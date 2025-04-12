@@ -6,29 +6,38 @@
   <title>VR into lesson</title>
   <style>
     body {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      align-items: center;
-      min-height: 200vh;
       margin: 0;
+      min-height: 200vh;
       background: linear-gradient(white, powderblue);
       background-attachment: fixed;
       background-size: cover;
       font-family: sans-serif;
+      overflow-x: hidden;
     }
 
     h1 {
-      margin-top: 60px;
-      text-align: center;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
       color: #333;
+      margin: 0;
     }
 
     p {
       max-width: 800px;
       text-align: center;
-      font-size: 1.1em;
+      font-size: 1.2rem;
       color: #333;
+      margin: 150px auto 0;
+    }
+
+    canvas {
+      display: block;
+      margin: 50px auto;
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid #ccc;
     }
   </style>
 </head>
@@ -37,12 +46,24 @@
   <h1>How we use VR in lesson</h1>
   <p>
     Tested in the Ohm High School, Erlangen.<br><br>
-
-    We, the new Media work group, are happy to present our newest milestone in using VR in lessons:  
-    The first usage.  
-    With the allowity of a geography prof, Mr. Spies, we used Vive VR Glasses in his lesson.  
-    Thanks to Steam VR / Google Earth VR, we were able to show students the earth in Virtual Reality.
-    But what is Virtual Reality? 
+    We, the new Media work group, are happy to present our newest milestone in using VR in lessons:<br>
+    The first usage.<br>
+    With the allowity of a geography prof, Mr. Spies, we used Vive VR Glasses in his lesson.<br>
+    Thanks to Steam VR / Google Earth VR, we were able to show students the earth in VR mode.
   </p>
+
+  <canvas id="demoCanvas" width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('demoCanvas');
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = '#0066ff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = 'white';
+    ctx.font = '30px sans-serif';
+    ctx.fillText('VR + Lesson = Future!', 100, 200);
+  </script>
 </body>
 </html>
