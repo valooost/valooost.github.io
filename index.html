@@ -8,17 +8,20 @@
     <style>
       body {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: start;
         align-items: center;
-        height: 100vh;
+        min-height: 200vh;
         margin: 0;
-        background: #000000;
+        background: linear-gradient(white, #0066ff);
+        background-attachment: fixed;
+        background-size: cover;
       }
     </style>
   </head>
-  <body style="background-color: black;">
-    <h1><a href="https://github.com/valooost" target="_blank" style="color: white;">Hi! See my GitHub Profile!</a></h1>
-    <p style="color: white;">  On Own Danger!</p>
+  <body>
+    <h1><a href="https://github.com/valooost" target="_blank" style="color: black;">Hi! See my GitHub Profile!</a></h1>
+    <p style="color: black;">On Own Danger!</p>
     <model-viewer 
       src="heliplane1.glb" 
       alt="My 3D-Model"
