@@ -33,6 +33,11 @@
       margin: 150px auto 0;
     }
 
+    canvas {
+      display: block;
+      margin: 50px auto;
+      background: transparent;
+      border: none;
     }
   </style>
 </head>
@@ -44,7 +49,7 @@
     We, the new Media work group, are happy to present our newest milestone in using VR in lessons:<br>
     The first usage.<br>
     With the allowity of a geography prof, Mr. Spies, we used Vive VR Glasses in his lesson.<br>
-    Thanks to Steam VR / Google Earth VR, we were able to show students the earth in VR mode, to let them search a McDonald's in Chicago, Ill.
+    Thanks to Steam VR / Google Earth VR, we were able to let students search the next McDonald's in Chicago, Ill.
   </p>
 
   <canvas id="demoCanvas" width="600" height="400"></canvas>
@@ -53,10 +58,8 @@
     const canvas = document.getElementById('demoCanvas');
     const ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = '#0066ff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = 'white';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'black';
     ctx.font = '30px sans-serif';
     ctx.fillText('VR + Lesson = Future!', 100, 200);
   </script>
