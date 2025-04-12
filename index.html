@@ -58,10 +58,13 @@
     const canvas = document.getElementById('demoCanvas');
     const ctx = canvas.getContext('2d');
 
+    // Clear the canvas before drawing
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Set text properties
     ctx.fillStyle = 'black';
     ctx.font = '18px sans-serif';
-    ctx.fillText('"VR is the next step towards the future of human interaction."', 20, 200);
+    // Adjust text position within canvas
+    ctx.fillText('"VR is the next step towards the future of human interaction."', 50, 200);
   </script>
 </body>
 </html>
