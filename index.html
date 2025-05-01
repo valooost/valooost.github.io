@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Star Wars Fan?</title>
+    <title>Mein Physik-Spiel</title>
 </head>
 <body>
     <h1>Willkommen auf meiner Seite!</h1>
     <p>Hier ist mein Scratch-Spiel:</p>
-    <iframe src="https://scratch.mit.edu/projects/967906127/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    <button onclick="document.getElementById('scratchFrame').requestFullscreen()">Vollbild starten</button>
+    <br><br>
+    <iframe id="scratchFrame" src="https://scratch.mit.edu/projects/967906127/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
 </body>
 </html>
