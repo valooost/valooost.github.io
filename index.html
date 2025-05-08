@@ -3,11 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Сюрприз!</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+    }
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: block;
+    }
+    h1 {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <h1>hehe</h1>
-  <video width="560" autoplay muted loop controls>
+  <video autoplay muted loop>
     <source src="assets/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4" type="video/mp4">
+    Dein Browser unterstützt das Video-Tag nicht.
   </video>
 </body>
 </html>
