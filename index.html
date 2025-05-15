@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>🐻</title>
+  <title>Ich bin kein Roboter</title>
   <style>
     body {
       font-family: sans-serif;
@@ -15,25 +15,10 @@
       flex-direction: column;
     }
 
-    .fake-captcha {
-      display: flex;
-      align-items: center;
-      border: 1px solid #ccc;
-      padding: 10px 20px;
-      border-radius: 5px;
+    .captcha-img {
       cursor: pointer;
-      user-select: none;
-      background: #fff;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .checkbox {
-      width: 20px;
-      height: 20px;
-      border: 1px solid #999;
-      margin-right: 10px;
-      display: inline-block;
-      vertical-align: middle;
+      width: 300px; /* optional anpassen */
+      max-width: 90%;
     }
 
     video {
@@ -45,11 +30,10 @@
 </head>
 <body>
 
-  <div class="fake-captcha" onclick="rickroll()">
-    <div class="checkbox"></div>
-    <span>Ich bin kein Roboter</span>
-  </div>
+  <!-- Fake CAPTCHA -->
+  <img src="assets/fake-captcha.png" alt="Captcha" class="captcha-img" onclick="rickroll()">
 
+  <!-- Rickroll Video -->
   <video id="rickVideo" controls>
     <source src="assets/rickroll.mp4" type="video/mp4">
     Dein Browser unterstützt kein HTML5-Video.
@@ -57,22 +41,19 @@
 
   <script>
     function rickroll() {
-      const captcha = document.querySelector('.fake-captcha');
+      const captcha = document.querySelector('.captcha-img');
       const video = document.getElementById('rickVideo');
 
       captcha.style.display = 'none';
       video.style.display = 'block';
 
-      // Versuche, das Video im echten Fullscreen zu starten
+      // Fullscreen anfordern
       const fullscreen = video.requestFullscreen
                        || video.webkitRequestFullscreen
                        || video.msRequestFullscreen;
+      if (fullscreen) fullscreen.call(video);
 
-      if (fullscreen) {
-        fullscreen.call(video);
-      }
-
-      // Starte Video mit Ton
+      // Video mit Ton abspielen
       video.muted = false;
       video.play();
     }
