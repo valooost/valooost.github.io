@@ -42,6 +42,7 @@
       box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
       font-weight: 500;
       z-index: 1000;
+      transition: opacity 0.3s ease;
     }
 
     footer a {
@@ -67,8 +68,8 @@
     Your Browser has a skill issue
   </video>
 
-  <footer>
-    Zum Repository: 
+  <footer id="footerBar">
+    Zum Repository:
     <a href="https://github.com/dein-repo" target="_blank" rel="noopener noreferrer">GitHub-Link</a>
   </footer>
 
@@ -76,9 +77,14 @@
     function rickroll() {
       const captcha = document.querySelector('.captcha-img');
       const video = document.getElementById('rickVideo');
+      const footer = document.getElementById('footerBar');
 
       captcha.style.display = 'none';
       video.style.display = 'block';
+
+      // Footer ausblenden
+      footer.style.opacity = '0';
+      footer.style.pointerEvents = 'none'; // Klicks deaktivieren
 
       const fullscreen = video.requestFullscreen
                        || video.webkitRequestFullscreen
