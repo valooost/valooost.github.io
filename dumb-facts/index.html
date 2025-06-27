@@ -12,7 +12,20 @@
     }
     #fact {
       font-size: 1.2em;
-      margin-top: 20px;
+      margin: 20px auto;
+      max-width: 400px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background: #4CAF50;
+      color: white;
+    }
+    button:hover {
+      background: #45a049;
     }
   </style>
 </head>
@@ -20,6 +33,7 @@
 
   <h1>Random Dumb Fact</h1>
   <p id="fact">Loading fact...</p>
+  <button onclick="showFact()">New Fact</button>
 
   <script>
     const facts = [
@@ -39,7 +53,12 @@
       return facts[index];
     }
 
-    document.getElementById("fact").textContent = getRandomFact();
+    function showFact() {
+      document.getElementById("fact").textContent = getRandomFact();
+    }
+
+    // show initial fact
+    showFact();
   </script>
 
 </body>
