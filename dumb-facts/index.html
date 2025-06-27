@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Zufälliger Fakt</title>
+  <title>Random Dumb Fact</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      background: #f0f0f0;
+    }
+    #fact {
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Zufälliger Fakt des Tages</h1>
-  <p id="fact">Lade Fakt...</p>
+  <h1>Random Dumb Fact</h1>
+  <p id="fact">Loading fact...</p>
 
   <script>
     const facts = [
-      "Cats can't Moonwalk",
-      "Cheese never gets bad",
-      "Horses can't vomit",
-      "Trump was a real estate agent",
-      "",
-      "Du kannst deine Nase nicht lecken. (Oder hast du es gerade versucht?)"
+      "Goats have rectangular pupils.",
+      "When an octopus is bored, it might eat its own arm.",
+      "A duck's quack does echo, though it's hard to hear.",
+      "Sloths poop only once a week, risking their life each time.",
+      "Wombats produce cube-shaped poop.",
+      "Hippos can't really swim; they walk along the bottom.",
+      "Pandas can fart backwards while tumbling, without noticing.",
+      "Bees tell other bees where food is by dancing.",
+      "In France, it's illegal to name a pig 'Napoleon'."
     ];
 
     function getRandomFact() {
