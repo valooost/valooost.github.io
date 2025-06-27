@@ -1,22 +1,40 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Home | valooost</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
-      background: #0000
+      background: #000000; /* black background for contrast */
+      margin: 0;
+      padding-top: 50px;
+    }
+
+    .link-button {
+      display: inline-block;
+      background: #004d00; /* dark green */
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      border-radius: 10px;
+      padding: 15px 30px;
+      margin: 20px;
+      transition: background 0.3s;
+    }
+
+    .link-button:hover {
+      background: #006600; /* lighter green on hover */
     }
   </style>
 </head>
 <body>
-  <h1> Welcome to my Github Page!</h1>
-  <div style="background: #004d00; border-radius: 10px; padding: 20px; margin: 15px auto; width: 400px; text-align: center;">
-    <a href="robux" style="color: white; text-decoration: none; font-size: 1.1em;">Need free Robux?</a>
-  </div>
 
-  <div style="background: #004d00; border-radius: 10px; padding: 20px; margin: 15px auto; width: 400px; text-align: center;">
-    <a href="dumb-facts" style="color: white; text-decoration: none; font-size: 1.1em;">Fill your brain up with nonsense</a>
-  
-  </div>
+  <h1>Welcome to my Github Page!</h1>
+
+  <a href="robux" class="link-button">Need free Robux?</a>
+  <a href="dumb-facts" class="link-button">Fill your brain up with nonsense</a>
+
 </body>
+</html>
