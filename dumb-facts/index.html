@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zufälliger Fakt</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+  </style>
+</head>
+<body>
+
+  <h1>Zufälliger Fakt des Tages</h1>
+  <p id="fact">Lade Fakt...</p>
+
+  <script>
+    const facts = [
+      "Katzen können nicht moonwalken.",
+      "Honig verdirbt nie.",
+      "Ein Nilpferd schwitzt rosa.",
+      "Bananen sind Beeren, Erdbeeren nicht.",
+      "Schnecken haben bis zu 14.000 Zähne.",
+      "Du kannst deine Nase nicht lecken. (Oder hast du es gerade versucht?)"
+    ];
+
+    function getRandomFact() {
+      const index = Math.floor(Math.random() * facts.length);
+      return facts[index];
+    }
+
+    document.getElementById("fact").textContent = getRandomFact();
+  </script>
+
+</body>
+</html>
