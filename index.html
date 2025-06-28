@@ -2,49 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>404 | valooost</title>
-  <link rel="icon" type="image/png" href="/assets/nett-hier.png">
+  <title>Home | valooost</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
       background: #f8f8f8;
-      color: #404040;
       margin: 0;
       padding-top: 50px;
       cursor: url('/assets/pixel.cur'), auto; /* Standardcursor */
     }
 
-    img {
-      max-width: 400px;
-      height: auto;
-      margin-top: 30px;
-      border-radius: 10px;
-    }
-
     .link-button {
       display: block;
-      width: fit-content;
-      background: #004d00;
       color: white;
       text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 10px;
       font-size: 1.1em;
-      margin: 20px auto 0 auto;
-      transition: background 0.3s;
+      border-radius: 10px;
+      padding: 15px 30px;
+      margin: 20px auto;
+      width: 220px;
+      background: #004d00;
+      transition: background 0.3s, transform 0.1s;
       cursor: url('/assets/link.cur'), pointer; /* Link-Cursor */
     }
 
     .link-button:hover {
       background: #006600;
+      transform: scale(0.95);
     }
   </style>
 </head>
 <body>
-  <h1>Err:404</h1>
-  <img src="/assets/nett-hier.png" alt="Nett hier. Aber das Bild fehlt!">
 
-  <a href="https://valooost.github.io/" class="link-button">To the Homepage</a>
+  <h1 style="color:#004d00; font-size:50px;">Welcome to my Github Page!</h1>
+  <p style="font-size:25px">Hi, I'm valooost! I'm a space enthusiast from Bavaria, Germany. <br>My favourite hobbies are - of course - programming, <br>reading (huge LotR fan!) and exploring the universe.</p>
+  
+  <p style="font-size:25px">My projects:</p>
+  
+  <a href="https://valooost.github.io/robux/" class="link-button" target="_blank">Need free Robux?</a>
+  <a href="https://valooost.github.io/dumb-facts/" class="link-button" target="_self">Fun facts for conversations</a>
+
 </body>
 </html>
