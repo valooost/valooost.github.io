@@ -1,115 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Braintrash | valooost</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 50px;
-      background:  #f8f8f8;
-    }
-    #fact {
-      font-size: 1.2em;
-      margin: 20px auto;
-      max-width: 400px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 1em;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background: #004d01;
-      color: white;
-      margin-top: 10px;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #45a049;
-    }
+const facts = [
+  "Goats have rectangular pupils.",
+  "When an octopus is bored, it might eat its own arm.",
+  "A duck's quack does echo, though it's hard to hear.",
+  "Sloths poop only once a week, risking their life each time.",
+  "Wombats produce cube-shaped poop.",
+  "Hippos can't really swim; they walk along the bottom.",
+  "Pandas can fart backwards while tumbling, without noticing.",
+  "Bees tell other bees where food is by dancing.",
+  "In France, it's illegal to name a pig 'Napoleon'.",
+  "Goats will faint if scared (Fainting Goats).",
+  "Butterflies taste with their feet.",
+  "A group of flamingos is called a 'flamboyance'.",
+  "Sharks existed before trees did.",
+  "Humans share 60% of their DNA with bananas.",
+  "Sea otters hold hands while sleeping to keep from drifting apart.",
+  "Octopuses have three hearts.",
+  "Turtles can breathe through their butts.",
+  "Cows have best friends and get stressed when separated.",
+  "No number from 1 to 999 includes the letter 'a' in its word form.",
+  "Many oranges are actually green.",
+  "The opposite sides of a die will always add up to seven.",
+  "You are 13.8 percent more likely to die on your birthday.",
+  "Playing dance music can help ward off mosquitoes.",
+  "The King of Hearts is the only king in a deck of cards without a mustache.",
+  "'Dreamt' is the only word in the English language that ends with “mt.”",
+  "A Greek-Canadian man invented the “Hawaiian” pizza.",
+  "If you open your eyes in a pitch-black room, the color you'll see is called “eigengrau.”",
+  "A group of hippos is called a 'bloat'.",
+  "Pogonophobia is the fear of beards.",
+  "Alaska is the only state whose name is on one row on a keyboard.",
+  "The average adult spends more time on the toilet than they do exercising.",
+  "Your fingernails grow faster on your dominant hand.",
+  "A “jiffy” is about one trillionth of a second.",
+  "Montpelier, Vermont, is the only U.S. capital without a McDonald’s.",
+  "Mulan has the highest kill-count of any Disney character."
+];
 
-    /* Neuer Home-Button */
-    .link-button {
-      display: inline-block;
-      background: #004d00;
-      color: white;
-      text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 10px;
-      font-size: 1.1em;
-      margin-top: 40px;
-      transition: background 0.3s;
-    }
+function getRandomFact() {
+  const index = Math.floor(Math.random() * facts.length);
+  return facts[index];
+}
 
-    .link-button:hover {
-      background: #006600;
-    }
-  </style>
-</head>
-<body>
+function showFact() {
+  document.getElementById("fact").textContent = getRandomFact();
+}
 
-  <h1>Random Dumb Fact</h1>
-  <p id="fact">Loading fact...</p>
-  <button onclick="showFact()">New Fact</button>
-
-  <br>
-
-  <a href="https://valooost.github.io/" class="link-button">To Homepage</a>
-
-  <script>
-    const facts = [
-      "Goats have rectangular pupils.",
-      "When an octopus is bored, it might eat its own arm.",
-      "A duck's quack does echo, though it's hard to hear.",
-      "Sloths poop only once a week, risking their life each time.",
-      "Wombats produce cube-shaped poop.",
-      "Hippos can't really swim; they walk along the bottom.",
-      "Pandas can fart backwards while tumbling, without noticing.",
-      "Bees tell other bees where food is by dancing.",
-      "In France, it's illegal to name a pig 'Napoleon'.",
-      "Goats will faint if scared (Fainting Goats).",
-      "Butterflies taste with their feet.",
-      "A group of flamingos is called a 'flamboyance'.",
-      "Sharks existed before trees did.",
-      "Humans share 60% of their DNA with bananas.",
-      "Sea otters hold hands while sleeping to keep from drifting apart.",
-      "Octopuses have three hearts.",
-      "Turtles can breathe through their butts.",
-      "Cows have best friends and get stressed when separated.",
-      "No number from 1 to 999 includes the letter 'a' in its word form.",
-      "Many oranges are actually green.",
-      "The opposite sides of a die will always add up to seven.",
-      "You are 13.8 percent more likely to die on your birthday.",
-      "Playing dance music can help ward off mosquitoes.",
-      "The King of Hearts is the only king in a deck of cards without a mustache.",
-      "'Dreamt' is the only word in the English language that ends with “mt.”",
-      "A Greek-Canadian man invented the “Hawaiian” pizza.",
-      "If you open your eyes in a pitch-black room, the color you'll see is called “eigengrau.”",
-      "A group of hippos is called a 'bloat'.",
-      "Pogonophobia is the fear of beards.",
-      "Alaska is the only state whose name is on one row on a keyboard.",
-      "The average adult spends more time on the toilet than they do exercising.",
-      "Your fingernails grow faster on your dominant hand."
-      "A “jiffy” is about one trillionth of a second."
-      "Montpelier, Vermont, is the only U.S. capital without a McDonald’s."
-      "Mulan has the highest kill-count of any Disney character."
-    ];
-
-    function getRandomFact() {
-      const index = Math.floor(Math.random() * facts.length);
-      return facts[index];
-    }
-
-    function showFact() {
-      document.getElementById("fact").textContent = getRandomFact();
-    }
-
-    // show initial fact
-    showFact();
-    <a href="https://bestlifeonline.com/useless-facts/">  Source: bestoflife </a>
-  </script>
-
-</body>
-</html>
+// show initial fact
+showFact();
