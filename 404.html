@@ -22,14 +22,15 @@
     }
 
     .link-button {
-      display: inline-block;
+      display: block; /* Button wird Blockelement */
+      width: fit-content; /* nur so breit wie nötig */
       background: #004d00;
       color: white;
       text-decoration: none;
       padding: 15px 30px;
       border-radius: 10px;
       font-size: 1.1em;
-      margin-top: 40px;
+      margin: 20px auto 0 auto; /* oben Abstand, zentriert, unten 0 */
       transition: background 0.3s;
     }
 
