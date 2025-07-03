@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Random Meme | valooost</title>
+  <link rel="icon" type="image/png" href="/assets/pixelrocket.png">
+  <style>
+    html, body { height:100%; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      background: #f8f8f8;
+      cursor: url('/assets/pixel.cur'), default;
+    }
+    a {
+      cursor: url('/assets/link.cur'), pointer;
+    }
+    img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      cursor: url('/assets/link.cur'), pointer;
+      border: none;
+      border-radius: 5px;
+      background: #004d01;
+      color: white;
+      margin-top: 10px;
+      transition: background 0.3s, transform 0.1s;
+    }
+    button:hover {
+      background: #006600;
+      transform: scale(0.95);
+    }
+    .link-button {
+      display: inline-block;
+      background: #004d00;
+      color: white;
+      text-decoration: none;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      margin-top: 40px;
+      transition: background 0.3s, transform 0.1s;
+      cursor: url('/assets/link.cur'), pointer;
+    }
+    .link-button:hover {
+      background: #006600;
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
 
+  <h1>Random Meme</h1>
+
+  <img id="meme" src="/assets/memes/placeholder.png" alt="Random Meme">
+
+  <br>
+
+  <button onclick="showMeme()">New Meme</button>
+
+  <br>
+
+  <a href="https://valooost.github.io/" class="link-button">To the Homepage</a>
+
+  <script>
+    const memes = [
+      "/assets/memes/apology.png",
+      "/assets/memes/brightmode.png",
+      "/assets/memes/dataplan.png",
+      "/assets/memes/foxwindow.png",
+      "/assets/memes/hahano.jpg"
+      "/assets/memes/latin.jpg"
+    ];
+
+    function getRandomMeme() {
+      const index = Math.floor(Math.random() * memes.length);
+      return memes[index];
+    }
+
+    function showMeme() {
+      document.getElementById("meme").src = getRandomMeme();
+    }
+
+    // show initial meme
+    showMeme();
+  </script>
+
+</body>
+</html>
