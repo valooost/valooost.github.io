@@ -31,20 +31,21 @@
 
     .link-button {
       display: block;
-      width: fit-content;
-      background: #004d00;
       color: white;
       text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 10px;
       font-size: 1.1em;
-      margin: 20px auto 0 auto;
-      transition: background 0.3s;
-      cursor: url('/assets/link.cur'), pointer; /* Link-Cursor */
+      border-radius: 10px;
+      padding: 15px 30px;
+      margin: 20px auto;
+      width: 220px;
+      background: #004d00;
+      transition: background 0.3s, transform 0.1s;
+      cursor: url('/assets/link.cur'), pointer;
     }
 
     .link-button:hover {
       background: #006600;
+      transform: scale(0.95);
     }
   </style>
 </head>
