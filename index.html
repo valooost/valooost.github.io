@@ -108,8 +108,21 @@
       // STABLE fallback - no random numbers!
       console.log('Using stable localStorage fallback...');
       
+      // ONE-TIME RESET: Only clear old data once, not every visit
+      const hasBeenReset = localStorage.getItem('valooost_has_been_reset');
+      if (!hasBeenReset) {
+        const oldCount = localStorage.getItem('valooost_stable_count');
+        if (oldCount && parseInt(oldCount) > 10) {
+          console.log('One-time reset: Detected old high count:', oldCount, '- resetting to 0');
+          localStorage.removeItem('valooost_stable_count');
+          sessionStorage.removeItem('valooost_session_visits');
+        }
+        // Mark as reset so this doesn't happen again
+        localStorage.setItem('valooost_has_been_reset', 'true');
+      }
+      
       // Use a fixed starting point based on your site (not random!)
-      const STABLE_BASE = 0; // Your site's estimated real visitor base
+      const STABLE_BASE = 0;
       let visitorCount = localStorage.getItem('valooost_stable_count');
       let sessionCount = sessionStorage.getItem('valooost_session_visits') || 0;
       
@@ -131,7 +144,8 @@
       }
       
       // Display stable count
-      countElement.textContent = visitorCount.toLocaleString() + ' (stable)';
+      const displaySuffix = hasBeenReset ? ' (stable)' : ' (reset)';
+      countElement.textContent = visitorCount.toLocaleString() + displaySuffix;
       currentElement.textContent = visitorCount;
       
       console.log('Stable counter displayed:', visitorCount);
