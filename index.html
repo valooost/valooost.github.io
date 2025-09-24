@@ -80,75 +80,38 @@
   <a href="https://github.com/valooost/valooost.github.io/discussions/6" class="link-button" target="_self">Copyright Discussion</a>
 
   <script>
-    // STABLE visitor counter - no more crazy jumping!
+    // GLOBAL VISITOR COUNTER - counts ALL visitors across all devices
     async function updateVisitorCounter() {
       const countElement = document.getElementById('visitorCount');
       const currentElement = document.getElementById('currentVisitor');
       
-      // Try CountAPI first - but let's use a fresh namespace
+      // Try to get GLOBAL count from API (shared across all visitors)
       try {
-        console.log('Attempting CountAPI...');
-        const response = await fetch('https://api.countapi.xyz/hit/valooost.github.io/visits-v2');
+        console.log('Attempting to get global visitor count...');
+        const response = await fetch('https://api.countapi.xyz/hit/valooost-global/total-visits');
         
         if (response.ok) {
           const data = await response.json();
-          console.log('CountAPI response:', data);
+          console.log('Global CountAPI response:', data);
           
           if (data && typeof data.value === 'number') {
+            // This is the TOTAL count of all visitors ever
             countElement.textContent = data.value.toLocaleString();
             currentElement.textContent = data.value;
-            console.log('Counter updated successfully with API!');
+            console.log('Global counter updated successfully! Total visitors:', data.value);
             return; // Success - exit here
           }
         }
       } catch (error) {
-        console.error('CountAPI failed:', error.message);
+        console.error('Global CountAPI failed:', error.message);
       }
       
-      // STABLE fallback - no random numbers!
-      console.log('Using stable localStorage fallback...');
+      // Fallback if API fails - but make it clear this isn't the real total
+      console.log('API failed, showing fallback message...');
+      countElement.textContent = 'API unavailable';
+      currentElement.textContent = '?';
       
-      // ONE-TIME RESET: Only clear old data once, not every visit
-      const hasBeenReset = localStorage.getItem('valooost_has_been_reset');
-      if (!hasBeenReset) {
-        const oldCount = localStorage.getItem('valooost_stable_count');
-        if (oldCount && parseInt(oldCount) > 10) {
-          console.log('One-time reset: Detected old high count:', oldCount, '- resetting to 0');
-          localStorage.removeItem('valooost_stable_count');
-          sessionStorage.removeItem('valooost_session_visits');
-        }
-        // Mark as reset so this doesn't happen again
-        localStorage.setItem('valooost_has_been_reset', 'true');
-      }
-      
-      // Use a fixed starting point based on your site (not random!)
-      const STABLE_BASE = 0;
-      let visitorCount = localStorage.getItem('valooost_stable_count');
-      let sessionCount = sessionStorage.getItem('valooost_session_visits') || 0;
-      
-      if (!visitorCount) {
-        // First time ever - use stable base
-        visitorCount = STABLE_BASE;
-        localStorage.setItem('valooost_stable_count', visitorCount);
-        console.log('Initialized with stable base:', STABLE_BASE);
-      } else {
-        visitorCount = parseInt(visitorCount);
-      }
-      
-      // Only increment once per browser session (not per page load!)
-      if (sessionCount == 0) {
-        visitorCount += 1;
-        localStorage.setItem('valooost_stable_count', visitorCount);
-        sessionStorage.setItem('valooost_session_visits', 1);
-        console.log('Incremented to:', visitorCount);
-      }
-      
-      // Display stable count
-      const displaySuffix = hasBeenReset ? ' (stable)' : ' (reset)';
-      countElement.textContent = visitorCount.toLocaleString() + displaySuffix;
-      currentElement.textContent = visitorCount;
-      
-      console.log('Stable counter displayed:', visitorCount);
+      console.log('Global counter fallback displayed');
     }
     
     // Initialize counter when page loads
