@@ -79,130 +79,67 @@
   <a href="https://github.com/valooost/valooost.github.io/discussions/6" class="link-button" target="_self">Copyright Discussion</a>
 
   <script>
-    // ROBUST visitor counter with multiple fallback methods
+    // STABLE visitor counter - no more crazy jumping!
     async function updateVisitorCounter() {
       const countElement = document.getElementById('visitorCount');
       const currentElement = document.getElementById('currentVisitor');
-      const orientationElement = document.getElementById('orientation');
-      const rotationElement = document.getElementById('rotation');
       
-      // Method 1: Try CountAPI.xyz (most reliable)
+      // Try CountAPI first
       try {
         console.log('Attempting CountAPI...');
-        const response = await fetch('https://api.countapi.xyz/hit/valooost.github.io/visits');
+        const response = await fetch('https://api.countapi.xyz/get/valooost.github.io/visits');
         
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        console.log('CountAPI response:', data);
-        
-        if (data && data.value) {
-          countElement.textContent = data.value.toLocaleString();
-          currentElement.textContent = data.value;
+        if (response.ok) {
+          const data = await response.json();
+          console.log('CountAPI GET response:', data);
           
-          // Success animation
-          countElement.style.transform = 'scale(1.1)';
-          countElement.style.color = '#006600';
-          setTimeout(() => {
-            countElement.style.transform = 'scale(1)';
-            countElement.style.color = '#004d00';
-          }, 200);
-          
-          console.log('Counter updated successfully!');
-          return; // Exit if successful
+          if (data && typeof data.value === 'number') {
+            countElement.textContent = data.value.toLocaleString();
+            currentElement.textContent = data.value;
+            console.log('Counter updated successfully with API!');
+            return; // Success - exit here
+          }
         }
       } catch (error) {
         console.error('CountAPI failed:', error.message);
       }
       
-      // Method 2: Fallback to localStorage counter
-      console.log('Using localStorage fallback...');
-      let visitorCount = localStorage.getItem('valooost_visitor_count');
-      let hasVisited = localStorage.getItem('valooost_has_visited_today');
-      let today = new Date().toDateString();
-      let lastVisit = localStorage.getItem('valooost_last_visit');
+      // STABLE fallback - no random numbers!
+      console.log('Using stable localStorage fallback...');
+      
+      // Use a fixed starting point based on your site (not random!)
+      const STABLE_BASE = 150; // Your site's estimated real visitor base
+      let visitorCount = localStorage.getItem('valooost_stable_count');
+      let sessionCount = sessionStorage.getItem('valooost_session_visits') || 0;
       
       if (!visitorCount) {
-        visitorCount = Math.floor(Math.random() * 50) + 100; // Start with random base
+        // First time ever - use stable base
+        visitorCount = STABLE_BASE;
+        localStorage.setItem('valooost_stable_count', visitorCount);
+        console.log('Initialized with stable base:', STABLE_BASE);
       } else {
         visitorCount = parseInt(visitorCount);
       }
       
-      // Only increment once per day per browser
-      if (lastVisit !== today || !hasVisited) {
+      // Only increment once per browser session (not per page load!)
+      if (sessionCount == 0) {
         visitorCount += 1;
-        localStorage.setItem('valooost_visitor_count', visitorCount);
-        localStorage.setItem('valooost_has_visited_today', 'true');
-        localStorage.setItem('valooost_last_visit', today);
-        localStorage.setItem('valooost_current_visitor', visitorCount);
+        localStorage.setItem('valooost_stable_count', visitorCount);
+        sessionStorage.setItem('valooost_session_visits', 1);
+        console.log('Incremented to:', visitorCount);
       }
       
-      let currentVisitorNumber = localStorage.getItem('valooost_current_visitor') || visitorCount;
+      // Display stable count
+      countElement.textContent = visitorCount.toLocaleString() + ' (stable)';
+      currentElement.textContent = visitorCount;
       
-      countElement.textContent = visitorCount.toLocaleString() + ' (local)';
-      currentElement.textContent = currentVisitorNumber;
-      
-      // Update device orientation
-      updateOrientation();
-    }
-
-    // Device Orientation Detection
-    function updateOrientation() {
-      const orientationElement = document.getElementById('orientation');
-      const rotationElement = document.getElementById('rotation');
-      
-      if (!orientationElement || !rotationElement) {
-        console.log('Orientation elements not found');
-        return;
-      }
-      
-      let orientationText = 'Unknown';
-      let rotationDegrees = 0;
-      
-      // Check screen orientation
-      if (screen.orientation) {
-        const angle = screen.orientation.angle;
-        const type = screen.orientation.type;
-        rotationDegrees = angle;
-        
-        if (type.includes('portrait')) {
-          orientationText = angle === 0 ? 'Portrait' : 'Portrait (upside down)';
-        } else if (type.includes('landscape')) {
-          orientationText = angle === 90 ? 'Landscape (left)' : 'Landscape (right)';
-        }
-      } else if (typeof window.orientation !== 'undefined') {
-        rotationDegrees = window.orientation;
-        switch (window.orientation) {
-          case 0: orientationText = 'Portrait'; break;
-          case 90: orientationText = 'Landscape (left)'; break;
-          case -90:
-          case 270: orientationText = 'Landscape (right)'; break;
-          case 180: orientationText = 'Portrait (upside down)'; break;
-        }
-      } else {
-        orientationText = window.innerHeight > window.innerWidth ? 'Portrait (estimated)' : 'Landscape (estimated)';
-      }
-      
-      orientationElement.textContent = orientationText;
-      rotationElement.textContent = rotationDegrees + '°';
-      
-      if (orientationText.includes('Portrait')) {
-        orientationElement.style.color = '#004d00';
-      } else if (orientationText.includes('Landscape')) {
-        orientationElement.style.color = '#0066cc';
-      }
+      console.log('Stable counter displayed:', visitorCount);
     }
     
-    // Initialize everything
+    // Initialize counter when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('Page loaded, initializing counter...');
+      console.log('Page loaded, initializing stable counter...');
       updateVisitorCounter();
-      
-      // Listen for orientation changes
-      window.addEventListener('orientationchange', () => setTimeout(updateOrientation, 100));
-      window.addEventListener('resize', updateOrientation);
     });
   </script>
 
