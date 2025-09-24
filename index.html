@@ -62,7 +62,7 @@
 
   <!-- Visitor Counter -->
   <div style="margin: 30px 0; padding: 15px; background: #e8e8e8; border-radius: 10px; max-width: 300px; margin: 30px auto;">
-    <h3 style="color: #004d00; margin: 0 0 10px 0;">Copilot's Visitor Counter</h3>
+    <h3 style="color: #004d00; margin: 0 0 10px 0;">Information base</h3>
     <p style="font-size: 20px; margin: 0; color: #004d00;">     
       👥 <span id="visitorCount">Loading...</span> visitors
     </p>
@@ -71,6 +71,7 @@
     </p>
 
 
+  <p style="font-size:25px"> Contact me via Discord: valooost</p>
 
   <p style="font-size:25px"> <br> </p>
 
@@ -108,7 +109,7 @@
       console.log('Using stable localStorage fallback...');
       
       // Use a fixed starting point based on your site (not random!)
-      const STABLE_BASE = 150; // Your site's estimated real visitor base
+      const STABLE_BASE = 0; // Your site's estimated real visitor base
       let visitorCount = localStorage.getItem('valooost_stable_count');
       let sessionCount = sessionStorage.getItem('valooost_session_visits') || 0;
       
