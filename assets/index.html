@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assets Viewer</title>
+</head>
+<body>
+    <h1>Assets</h1>
+    <div id="assets"></div>
+
+    <h1>Memes</h1>
+    <div id="memes"></div>
+
+    <script>
+        async function fetchFiles(directory, containerId) {
+            try {
+                const response = await fetch(`/api/files?directory=${directory}`);
+                const files = await response.json();
+                const container = document.getElementById(containerId);
+
+                files.forEach(file => {
+                    const link = document.createElement('a');
+                    link.href = `${directory}/${file}`;
+                    link.textContent = file;
+                    link.style.display = 'block';
+                    container.appendChild(link);
+                });
+            } catch (error) {
+                console.error('Error fetching files:', error);
+            }
+        }
+
+        fetchFiles('/assets', 'assets');
+        fetchFiles('/assets/memes', 'memes');
+    </script>
+</body>
+</html>

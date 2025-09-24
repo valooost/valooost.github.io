@@ -44,14 +44,73 @@
 </head>
 <body>
 
-  <h1 style="color:#004d00; font-size:50px;">Welcome to my Github Page!</h1>
-  <p style="font-size:25px">Hi, I'm valooost! <br> I'm a space enthusiast from Bavaria, Germany. <br>My favourite hobbies are - of course - programming, <br>reading (huge LotR fan!) and trying to confuse AI.<br> </p>
+  <h1 style="color:#004d00; font-size:50px;">Welcome to my Website!</h1>
+  <p style="font-size:25px">Hi, I'm valooost!</p>
+  <p style="font-size:25px">This is a simple website to show some of my projects and interests.</p>
+  <p style="font-size:25px">Feel free to explore and contact me if you have any questions!</p>
+  <p style="font-size:25px">Thanks for visiting!<br> </p>
   
-  <p style="font-size:25px">See My projects:</p>
+  <p style="font-size:25px">Projects:</p>
   
-  <a href="https://valooost.github.io/robux" class="link-button" target="_blank">Need some Robux?</a>
-  <a href="https://valooost.github.io/dumb-facts/" class="link-button" target="_self">Fun facts for conversations</a>
-  <a href="https://valooost.github.io/memes" class="link-button" target="_self">Free Memes!</a>
+  <a href="https://valooost.is-a.dev/robux" class="link-button" target="_blank">Need some Robux?</a>
+  <a href="https://valooost.is-a.dev/dumb-facts/" class="link-button" target="_self">Fun facts for conversations</a>
+  <a href="https://valooost.is-a.dev/memes" class="link-button" target="_self">Free Memes!</a>
+
+  <p style="font-size:25px"> <br> </p>
+
+
+
+  <!-- Visitor Counter -->
+  <div style="margin: 30px 0; padding: 15px; background: #e8e8e8; border-radius: 10px; max-width: 300px; margin: 30px auto;">
+    <h3 style="color: #004d00; margin: 0 0 10px 0;">Visitor Counter</h3>
+    <p style="font-size: 20px; margin: 0; color: #004d00;">     
+      👥 <span id="visitorCount">Loading...</span> visitors
+    </p>
+    <p style="font-size: 12px; margin: 5px 0 0 0; color: #666;">
+      You are visitor #<span id="currentVisitor">...</span>
+    </p>
+  </div>
+
+  <p style="font-size:25px"> <br> </p>
+  <p style="font-size:25px"> <br> </p>
+
+
+  <p style="font-size:15px">Copyright infringement?</p>
+  <a href="https://github.com/valooost/valooost.github.io/discussions/6" class="link-button" target="_self">Copyright Discussion</a>
+
+  <script>
+    // Simple visitor counter using localStorage
+    function updateVisitorCounter() {
+      // Get current visitor count from localStorage
+      let visitorCount = localStorage.getItem('visitorCount');
+      let hasVisited = localStorage.getItem('hasVisited');
+      
+      // If first time visiting or no count exists, initialize
+      if (!visitorCount) {
+        visitorCount = 0;
+      } else {
+        visitorCount = parseInt(visitorCount);
+      }
+      
+      // If user hasn't visited before (in this browser session)
+      if (!hasVisited) {
+        visitorCount += 1;
+        localStorage.setItem('visitorCount', visitorCount);
+        localStorage.setItem('hasVisited', 'true');
+        localStorage.setItem('currentVisitorNumber', visitorCount);
+      }
+      
+      // Get the visitor number for this user
+      let currentVisitorNumber = localStorage.getItem('currentVisitorNumber') || visitorCount;
+      
+      // Update the display
+      document.getElementById('visitorCount').textContent = visitorCount.toLocaleString();
+      document.getElementById('currentVisitor').textContent = currentVisitorNumber;
+    }
+    
+    // Initialize counter when page loads
+    document.addEventListener('DOMContentLoaded', updateVisitorCounter);
+  </script>
 
 </body>
 </html>

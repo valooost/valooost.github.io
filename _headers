@@ -1,0 +1,7 @@
+/*
+  # Remove or modify HSTS header if needed
+  ! Strict-Transport-Security
+  
+# Or set a shorter max-age (optional)
+# /*
+#   Strict-Transport-Security: max-age=300; includeSubDomains
