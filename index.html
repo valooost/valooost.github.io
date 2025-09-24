@@ -71,7 +71,7 @@
     </p>
 
 
-  <p style="font-size:25px"> Contact me via Discord: valooost</p>
+  <p style="font-size:20px"> Contact me via Discord: valooost</p>
 
   <p style="font-size:25px"> <br> </p>
 
@@ -85,14 +85,14 @@
       const countElement = document.getElementById('visitorCount');
       const currentElement = document.getElementById('currentVisitor');
       
-      // Try CountAPI first
+      // Try CountAPI first - but let's use a fresh namespace
       try {
         console.log('Attempting CountAPI...');
-        const response = await fetch('https://api.countapi.xyz/get/valooost.github.io/visits');
+        const response = await fetch('https://api.countapi.xyz/hit/valooost.github.io/visits-v2');
         
         if (response.ok) {
           const data = await response.json();
-          console.log('CountAPI GET response:', data);
+          console.log('CountAPI response:', data);
           
           if (data && typeof data.value === 'number') {
             countElement.textContent = data.value.toLocaleString();
