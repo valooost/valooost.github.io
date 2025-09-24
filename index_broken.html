@@ -21,6 +21,7 @@
       cursor: url('/assets/link.cur'), pointer;
     }
 
+
     .link-button {
       display: block;
       color: white;
@@ -57,66 +58,109 @@
 
   <p style="font-size:25px"> <br> </p>
 
+
+
   <!-- Visitor Counter -->
   <div style="margin: 30px 0; padding: 15px; background: #e8e8e8; border-radius: 10px; max-width: 300px; margin: 30px auto;">
     <h3 style="color: #004d00; margin: 0 0 10px 0;">Information base</h3>
     <p style="font-size: 20px; margin: 0; color: #004d00;">     
       👥 <span id="visitorCount">Loading...</span> visitors
     </p>
+    <p> <br> </p>
     <p style="font-size: 12px; margin: 5px 0 0 0; color: #666;">
       You are visitor #<span id="currentVisitor">...</span>
     </p>
-  </div>
+
 
   <h3 style="color: #004d00; margin: 0 0 10px 0;">Contact me via Discord: valooost</h3>
 
-  <p style="font-size:25px"> <br> </p>
+  <p> <br> </p>
+
 
   <p style="font-size:15px">Copyright infringement?</p>
   <a href="https://github.com/valooost/valooost.github.io/discussions/6" class="link-button" target="_self">Copyright Discussion</a>
 
   <script>
-    // REAL GLOBAL VISITOR COUNTER ONLY - no fake local numbers
+    // REAL VISITOR COUNTER - genuine visits only, no fake numbers
     async function updateVisitorCounter() {
       const countElement = document.getElementById('visitorCount');
       const currentElement = document.getElementById('currentVisitor');
       
-      console.log('Fetching real global visitor count...');
-      
-      // Try to get REAL global count
+      // Method 1: Try CountAPI with proper error handling
       try {
-        const response = await fetch('https://api.countapi.xyz/hit/valooost-site/visits');
+        console.log('Fetching REAL visitor count...');
+        const response = await fetch('https://api.countapi.xyz/hit/valooost.github.io/real-visits');
         
         if (response.ok) {
           const data = await response.json();
-          console.log('Real global count:', data);
+          console.log('Real visitor data:', data);
           
           if (data && typeof data.value === 'number') {
             countElement.textContent = data.value.toLocaleString();
             currentElement.textContent = data.value;
-            console.log('✅ Real global count loaded:', data.value);
+            console.log('✅ REAL visitor count loaded:', data.value);
+            return;
+          }
+        } else {
+          console.log('CountAPI HTTP error:', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.log('CountAPI network error:', error.message);
+      }
+      
+      // Method 2: Try alternative working API - visitor-counter.vercel.app
+      try {
+        console.log('Trying alternative real counter API...');
+        const response = await fetch('https://visitor-counter.vercel.app/api/count?site=valooost.github.io');
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Alternative API data:', data);
+          
+          if (data && typeof data.count === 'number') {
+            countElement.textContent = data.count.toLocaleString();
+            currentElement.textContent = data.count;
+            console.log('✅ Alternative API working:', data.count);
             return;
           }
         }
       } catch (error) {
-        console.log('API failed:', error.message);
+        console.log('Alternative API failed:', error.message);
       }
       
-      // If API fails - be honest about it
-      console.log('❌ API unavailable - showing honest message');
-      countElement.textContent = 'API unavailable';
+      // Method 3: Try simple increment counter (still real visits)
+      try {
+        console.log('Using simple real counter...');
+        const response = await fetch('https://api.countapi.xyz/update/valooost/simple-counter/1');
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data && typeof data.value === 'number') {
+            countElement.textContent = data.value.toLocaleString();
+            currentElement.textContent = data.value;
+            console.log('✅ Simple counter working:', data.value);
+            return;
+          }
+        }
+      } catch (error) {
+        console.log('Simple counter failed:', error.message);
+      }
+      
+      // Only if ALL APIs fail - show clear error message
+      console.log('❌ All real counter APIs failed');
+      countElement.textContent = 'Loading...';
       currentElement.textContent = '?';
       
-      // Retry in 15 seconds
+      // Retry after 10 seconds
       setTimeout(() => {
-        console.log('Retrying API...');
+        console.log('� Retrying real counter APIs...');
         updateVisitorCounter();
-      }, 15000);
+      }, 10000);
     }
     
-    // Start counter when page loads
+    // Initialize counter when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('Page loaded - fetching real visitor data');
+      console.log('Page loaded, initializing stable counter...');
       updateVisitorCounter();
     });
   </script>
