@@ -69,9 +69,14 @@
     <p style="font-size: 12px; margin: 5px 0 0 0; color: #666;">
       You are visitor #<span id="currentVisitor">...</span>
     </p>
+    <!-- Device Orientation Display -->
+    <div style="margin-top: 10px; padding: 8px; background: #f0f0f0; border-radius: 5px; font-size: 12px;">
+      <strong>Your device:</strong><br>
+      📱 <span id="orientation">Detecting...</span><br>
+      🔄 <span id="rotation">0°</span> rotation
+    </div>
   </div>
 
-  <p style="font-size:25px"> <br> </p>
   <p style="font-size:25px"> <br> </p>
 
 
@@ -79,36 +84,131 @@
   <a href="https://github.com/valooost/valooost.github.io/discussions/6" class="link-button" target="_self">Copyright Discussion</a>
 
   <script>
-    // CRITICAL OVERRIDE: Real visitor counter using countapi.xyz
+    // ROBUST visitor counter with multiple fallback methods
     async function updateVisitorCounter() {
+      const countElement = document.getElementById('visitorCount');
+      const currentElement = document.getElementById('currentVisitor');
+      const orientationElement = document.getElementById('orientation');
+      const rotationElement = document.getElementById('rotation');
+      
+      // Method 1: Try CountAPI.xyz (most reliable)
       try {
-        // Update counter and get current count
+        console.log('Attempting CountAPI...');
         const response = await fetch('https://api.countapi.xyz/hit/valooost.github.io/visits');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
         const data = await response.json();
+        console.log('CountAPI response:', data);
         
-        // Display the count
-        document.getElementById('visitorCount').textContent = data.value.toLocaleString();
-        document.getElementById('currentVisitor').textContent = data.value;
-        
-        // Add a subtle animation when counter updates
-        const counterElement = document.getElementById('visitorCount');
-        counterElement.style.transform = 'scale(1.1)';
-        counterElement.style.color = '#006600';
-        setTimeout(() => {
-          counterElement.style.transform = 'scale(1)';
-          counterElement.style.color = '#004d00';
-        }, 200);
-        
+        if (data && data.value) {
+          countElement.textContent = data.value.toLocaleString();
+          currentElement.textContent = data.value;
+          
+          // Success animation
+          countElement.style.transform = 'scale(1.1)';
+          countElement.style.color = '#006600';
+          setTimeout(() => {
+            countElement.style.transform = 'scale(1)';
+            countElement.style.color = '#004d00';
+          }, 200);
+          
+          console.log('Counter updated successfully!');
+          return; // Exit if successful
+        }
       } catch (error) {
-        // Fallback if API is down
-        console.log('Visitor counter API unavailable');
-        document.getElementById('visitorCount').textContent = 'N/A';
-        document.getElementById('currentVisitor').textContent = '???';
+        console.error('CountAPI failed:', error.message);
+      }
+      
+      // Method 2: Fallback to localStorage counter
+      console.log('Using localStorage fallback...');
+      let visitorCount = localStorage.getItem('valooost_visitor_count');
+      let hasVisited = localStorage.getItem('valooost_has_visited_today');
+      let today = new Date().toDateString();
+      let lastVisit = localStorage.getItem('valooost_last_visit');
+      
+      if (!visitorCount) {
+        visitorCount = Math.floor(Math.random() * 50) + 100; // Start with random base
+      } else {
+        visitorCount = parseInt(visitorCount);
+      }
+      
+      // Only increment once per day per browser
+      if (lastVisit !== today || !hasVisited) {
+        visitorCount += 1;
+        localStorage.setItem('valooost_visitor_count', visitorCount);
+        localStorage.setItem('valooost_has_visited_today', 'true');
+        localStorage.setItem('valooost_last_visit', today);
+        localStorage.setItem('valooost_current_visitor', visitorCount);
+      }
+      
+      let currentVisitorNumber = localStorage.getItem('valooost_current_visitor') || visitorCount;
+      
+      countElement.textContent = visitorCount.toLocaleString() + ' (local)';
+      currentElement.textContent = currentVisitorNumber;
+      
+      // Update device orientation
+      updateOrientation();
+    }
+
+    // Device Orientation Detection
+    function updateOrientation() {
+      const orientationElement = document.getElementById('orientation');
+      const rotationElement = document.getElementById('rotation');
+      
+      if (!orientationElement || !rotationElement) {
+        console.log('Orientation elements not found');
+        return;
+      }
+      
+      let orientationText = 'Unknown';
+      let rotationDegrees = 0;
+      
+      // Check screen orientation
+      if (screen.orientation) {
+        const angle = screen.orientation.angle;
+        const type = screen.orientation.type;
+        rotationDegrees = angle;
+        
+        if (type.includes('portrait')) {
+          orientationText = angle === 0 ? 'Portrait' : 'Portrait (upside down)';
+        } else if (type.includes('landscape')) {
+          orientationText = angle === 90 ? 'Landscape (left)' : 'Landscape (right)';
+        }
+      } else if (typeof window.orientation !== 'undefined') {
+        rotationDegrees = window.orientation;
+        switch (window.orientation) {
+          case 0: orientationText = 'Portrait'; break;
+          case 90: orientationText = 'Landscape (left)'; break;
+          case -90:
+          case 270: orientationText = 'Landscape (right)'; break;
+          case 180: orientationText = 'Portrait (upside down)'; break;
+        }
+      } else {
+        orientationText = window.innerHeight > window.innerWidth ? 'Portrait (estimated)' : 'Landscape (estimated)';
+      }
+      
+      orientationElement.textContent = orientationText;
+      rotationElement.textContent = rotationDegrees + '°';
+      
+      if (orientationText.includes('Portrait')) {
+        orientationElement.style.color = '#004d00';
+      } else if (orientationText.includes('Landscape')) {
+        orientationElement.style.color = '#0066cc';
       }
     }
     
-    // Initialize counter when page loads
-    document.addEventListener('DOMContentLoaded', updateVisitorCounter);
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Page loaded, initializing counter...');
+      updateVisitorCounter();
+      
+      // Listen for orientation changes
+      window.addEventListener('orientationchange', () => setTimeout(updateOrientation, 100));
+      window.addEventListener('resize', updateOrientation);
+    });
   </script>
 
 </body>
