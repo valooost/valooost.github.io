@@ -68,51 +68,5 @@
 
   </div>
 
-  <script>
-    // REAL GLOBAL VISITOR COUNTER ONLY - no fake local numbers
-    async function updateVisitorCounter() {
-      const countElement = document.getElementById('visitorCount');
-      const currentElement = document.getElementById('currentVisitor');
-      
-      console.log('Fetching real global visitor count...');
-      
-      // Try to get REAL global count
-      try {
-        const response = await fetch('https://api.countapi.xyz/hit/valooost-site/visits');
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Real global count:', data);
-          
-          if (data && typeof data.value === 'number') {
-            countElement.textContent = data.value.toLocaleString();
-            currentElement.textContent = data.value;
-            console.log('✅ Real global count loaded:', data.value);
-            return;
-          }
-        }
-      } catch (error) {
-        console.log('API failed:', error.message);
-      }
-      
-      // If API fails - be honest about it
-      console.log('❌ API unavailable - showing honest message');
-      countElement.textContent = 'API unavailable';
-      currentElement.textContent = '?';
-      
-      // Retry in 15 seconds
-      setTimeout(() => {
-        console.log('Retrying API...');
-        updateVisitorCounter();
-      }, 15000);
-    }
-    
-    // Start counter when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Page loaded - fetching real visitor data');
-      updateVisitorCounter();
-    });
-  </script>
-
 </body>
 </html>
