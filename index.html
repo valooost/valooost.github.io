@@ -12,9 +12,29 @@
       font-family: sans-serif;
       text-align: center;
       background: #f8f8f8;
+      color: #333;
       margin: 0;
       padding-top: 50px;
       cursor: url('/assets/pixel.cur'), default;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background: #1a1a1a;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode h1 {
+      color: #006600 !important;
+    }
+
+    body.dark-mode .info-section {
+      background: #2d2d2d !important;
+    }
+
+    body.dark-mode .info-section h3 {
+      color: #004d00 !important;
     }
 
     a {
@@ -39,9 +59,43 @@
       background: #006600;
       transform: scale(0.95);
     }
+
+    /* Dark mode toggle button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #004d00;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      cursor: url('/assets/link.cur'), pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.1s;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      background: #006600;
+      transform: scale(0.95);
+    }
+
+    body.dark-mode .theme-toggle {
+      background: #004d00;
+      color: #1a1a1a;
+    }
+
+    body.dark-mode .theme-toggle:hover {
+      background: #004d00;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Dark mode toggle button -->
+  <button class="theme-toggle" onclick="toggleDarkMode()">🌙 Dark</button>
 
   <h1 style="color:#004d00; font-size:50px;">Welcome to my Website!</h1>
   <p style="font-size:25px">Hi, I'm valooost!</p>
@@ -58,14 +112,48 @@
   <p style="font-size:25px"> <br> </p>
 
   <!-- Visitor Counter -->
-  <div style="background: #e8e8e8; border-radius: 10px; max-width: 300px; margin: 30px auto;">
-    <h3 style="padding : 15px; color: #004d00; margin: 0 0 10px 0; font-size:30px">Information base</h3>
-    <h3 style="font-size:20px">Contact me via Discord: valooost</h3>
+  <div class="info-section" style="background: #e8e8e8; border-radius: 10px; max-width: 300px; margin: 30px auto;">
+    <h3 style="padding : 15px; color: #004d00; margin: 0 0 10px 0; font-size:30px">Information Section</h3>
+    <h3 style="font-size:20px">Discord: valooost</h3>
     <p> <br> </p>
     <h3 style="font-size:20px">Copyright infringement?</h3>
-    <a href="https://github.com/valooost/valooost.github.io/discussions/6" class="link-button" target="_self">go to the Github Discussion</a>
+    <a href="https://github.com/valooost/valooost.github.io/discussions/6" class="link-button" target="_self">go to the Discussion</a>
 
   </div>
+
+  <script>
+    // Dark mode functionality
+    function toggleDarkMode() {
+      const body = document.body;
+      const button = document.querySelector('.theme-toggle');
+      
+      body.classList.toggle('dark-mode');
+      
+      // Update button text and icon
+      if (body.classList.contains('dark-mode')) {
+        button.innerHTML = '☀️ Light';
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        button.innerHTML = '🌙 Dark';
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    }
+
+    // Load saved theme preference
+    function loadTheme() {
+      const darkMode = localStorage.getItem('darkMode');
+      const body = document.body;
+      const button = document.querySelector('.theme-toggle');
+      
+      if (darkMode === 'enabled') {
+        body.classList.add('dark-mode');
+        button.innerHTML = '☀️ Light';
+      }
+    }
+
+    // Load theme when page loads
+    document.addEventListener('DOMContentLoaded', loadTheme);
+  </script>
 
 </body>
 </html>
