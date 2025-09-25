@@ -2,130 +2,203 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="/assets/pixelrocket.png">
-  <meta charset="UTF-8" />
-  <title>Funfacts | valooost</title>
+  <meta charset="UTF-8">
+  <title>Fun Facts | valooost</title>
   <style>
     html, body {
-      height:100%;
+      height: 100%;
     }
     body {
       font-family: sans-serif;
       text-align: center;
-      padding-top: 50px;
       background: #f8f8f8;
+      color: #333;
+      margin: 0;
+      padding-top: 50px;
       cursor: url('/assets/pixel.cur'), default;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background: #1a1a1a;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode h1 {
+      color: #006600 !important;
+    }
+
+    body.dark-mode .fact-container {
+      background: #2d2d2d !important;
+      border-color: #444 !important;
     }
 
     a {
-    cursor: url('/assets/link.cur'), pointer;
-  }
-
-    #fact {
-      font-size: 1.2em;
-      margin: 20px auto;
-      max-width: 400px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 1.2em;
       cursor: url('/assets/link.cur'), pointer;
-      border: none;
-      border-radius: 5px;
-      background: #004d01;
-      color: white;
-      margin-top: 10px;
-      transition: background 0.3s, transform 0.1s;
-    }
-
-    button:hover {
-      background: #006600;
-      transform: scale(0.95);
     }
 
     .link-button {
-      display: inline-block;
-      background: #004d00;
+      display: block;
       color: white;
       text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 10px;
       font-size: 1.1em;
-      margin-top: 40px;
+      border-radius: 10px;
+      padding: 15px 30px;
+      margin: 20px auto;
+      width: 220px;
+      background: #006600;
       transition: background 0.3s, transform 0.1s;
-      cursor: url('/assets/link.cur'), pointer; /* Link-Cursor */
+      cursor: url('/assets/link.cur'), pointer;
     }
 
     .link-button:hover {
       background: #006600;
       transform: scale(0.95);
     }
+
+    /* Dark mode toggle button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #006600;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      cursor: url('/assets/link.cur'), pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.1s;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      background: #006600;
+      transform: scale(0.95);
+    }
+
+    body.dark-mode .theme-toggle {
+      background: #006600;
+      color: #1a1a1a;
+    }
+
+    body.dark-mode .theme-toggle:hover {
+      background: #006600;
+    }
+
+    /* Fact container styling */
+    .fact-container {
+      background: #e8e8e8;
+      border: 2px solid #ddd;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 600px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .fact-text {
+      font-size: 20px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .new-fact-btn {
+      background: #006600;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: url('/assets/link.cur'), pointer;
+      transition: background 0.3s, transform 0.1s;
+    }
+
+    .new-fact-btn:hover {
+      background: #005500;
+      transform: scale(0.95);
+    }
   </style>
 </head>
 <body>
 
-  <h1>Random Dumb Fact</h1>
-  <p id="fact">Loading fact...</p>
-  <button onclick="showFact()">New Fact</button>
+  <!-- Dark mode toggle button -->
+  <button class="theme-toggle" onclick="toggleDarkMode()">🌙 Dark</button>
 
-  <br>
+  <h1 style="color:#004d00; font-size:50px;">Fun Facts for Conversations!</h1>
+  <p style="font-size:25px">Need something interesting to say? Here's a random fun fact!</p>
 
-  <a href="https://valooost.is-a.dev/" class="link-button">To the Homepage</a>
+  <div class="fact-container">
+    <div id="fact-display" class="fact-text">Click the button below to get a fun fact!</div>
+    <button class="new-fact-btn" onclick="getNewFact()">Get New Fact</button>
+  </div>
 
-  <p style="margin-top:30px;">
-    <a href="https://bestlifeonline.com/useless-facts/" target="_blank" style="color: #004d00">Source: Best Life Online</a>
-  </p>
+  <a href="/" class="link-button">Back to Home</a>
 
   <script>
     const facts = [
-      "Goats have rectangular pupils.",
-      "When an octopus is bored, it might eat its own arm.",
-      "A duck's quack does echo, though it's hard to hear.",
-      "Sloths poop only once a week, risking their life each time.",
-      "Wombats produce cube-shaped poop.",
-      "Hippos can't really swim; they walk along the bottom.",
-      "Pandas can fart backwards while tumbling, without noticing.",
-      "Bees tell other bees where food is by dancing.",
-      "In France, it's illegal to name a pig 'Napoleon'.",
-      "Goats will faint if scared (Fainting Goats).",
-      "Butterflies taste with their feet.",
+      "Bananas are berries, but strawberries aren't.",
       "A group of flamingos is called a 'flamboyance'.",
-      "Sharks existed before trees did.",
-      "Humans share 60% of their DNA with bananas.",
-      "Sea otters hold hands while sleeping to keep from drifting apart.",
-      "Octopuses have three hearts.",
-      "Turtles can breathe through their butts.",
-      "Cows have best friends and get stressed when separated.",
-      "No number from 1 to 999 includes the letter 'a' in its word form.",
-      "Many oranges are actually green.",
-      "The opposite sides of a die will always add up to seven.",
-      "You are 13.8 percent more likely to die on your birthday.",
-      "Playing dance music can help ward off mosquitoes.",
-      "The King of Hearts is the only king in a deck of cards without a mustache.",
-      "'Dreamt' is the only word in the English language that ends with “mt.”",
-      "A Greek-Canadian man invented the “Hawaiian” pizza.",
-      "If you open your eyes in a pitch-black room, the color you'll see is called “eigengrau.”",
-      "A group of hippos is called a 'bloat'.",
-      "Pogonophobia is the fear of beards.",
-      "Alaska is the only state whose name is on one row on a keyboard.",
-      "The average adult spends more time on the toilet than they do exercising.",
-      "Your fingernails grow faster on your dominant hand.",
-      "A “jiffy” is about one trillionth of a second.",
-      "Montpelier, Vermont, is the only U.S. capital without a McDonald’s.",
-      "Mulan has the highest kill-count of any Disney character."
+      "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.",
+      "Octopuses have three hearts and blue blood.",
+      "The shortest war in history was between Britain and Zanzibar in 1896. It lasted only 38-45 minutes.",
+      "A single cloud can weigh more than a million pounds.",
+      "There are more possible games of chess than there are atoms in the observable universe.",
+      "Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid of Giza.",
+      "A shrimp's heart is in its head.",
+      "The unicorn is Scotland's national animal.",
+      "You can't hum while holding your nose closed.",
+      "The dot over a lowercase 'i' or 'j' is called a tittle.",
+      "A group of pugs is called a 'grumble'.",
+      "Bubble wrap was originally invented as wallpaper.",
+      "The human brain is about 75% water.",
+      "A day on Venus is longer than its year.",
+      "Penguins have knees, they're just hidden inside their bodies.",
+      "The Great Wall of China isn't visible from space with the naked eye.",
+      "Dolphins have names for each other.",
+      "A jiffy is an actual unit of time: 1/100th of a second."
     ];
 
-    function getRandomFact() {
-      const index = Math.floor(Math.random() * facts.length);
-      return facts[index];
+    function getNewFact() {
+      const factDisplay = document.getElementById('fact-display');
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      factDisplay.textContent = facts[randomIndex];
     }
 
-    function showFact() {
-      document.getElementById("fact").textContent = getRandomFact();
+    // Dark mode functionality
+    function toggleDarkMode() {
+      const body = document.body;
+      const button = document.querySelector('.theme-toggle');
+      
+      body.classList.toggle('dark-mode');
+      
+      // Update button text and icon
+      if (body.classList.contains('dark-mode')) {
+        button.innerHTML = '☀️ Light';
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        button.innerHTML = '🌙 Dark';
+        localStorage.setItem('darkMode', 'disabled');
+      }
     }
 
-    // show initial fact
-    showFact();
+    // Load saved theme preference
+    function loadTheme() {
+      const darkMode = localStorage.getItem('darkMode');
+      const body = document.body;
+      const button = document.querySelector('.theme-toggle');
+      
+      if (darkMode === 'enabled') {
+        body.classList.add('dark-mode');
+        button.innerHTML = '☀️ Light';
+      }
+    }
+
+    // Load theme when page loads
+    document.addEventListener('DOMContentLoaded', loadTheme);
   </script>
 
 </body>

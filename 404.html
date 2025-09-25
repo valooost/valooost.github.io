@@ -3,30 +3,38 @@
 <head>
   <link rel="icon" type="image/png" href="/assets/pixelrocket.png">
   <meta charset="UTF-8">
-  <title>404 | valooost</title>
+  <title>404 - Page Not Found | valooost</title>
   <style>
     html, body {
-      height:100%;
+      height: 100%;
     }
     body {
       font-family: sans-serif;
       text-align: center;
       background: #f8f8f8;
-      color: #404040;
+      color: #333;
       margin: 0;
       padding-top: 50px;
       cursor: url('/assets/pixel.cur'), default;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background: #1a1a1a;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode h1 {
+      color: #006600 !important;
+    }
+
+    body.dark-mode .error-container {
+      background: #2d2d2d !important;
+    }
+
     a {
       cursor: url('/assets/link.cur'), pointer;
-    }
-
-
-    img {
-      max-width: 400px;
-      height: auto;
-      margin-top: 30px;
-      border-radius: 10px;
     }
 
     .link-button {
@@ -38,7 +46,7 @@
       padding: 15px 30px;
       margin: 20px auto;
       width: 220px;
-      background: #004d00;
+      background: #006600;
       transition: background 0.3s, transform 0.1s;
       cursor: url('/assets/link.cur'), pointer;
     }
@@ -47,12 +55,116 @@
       background: #006600;
       transform: scale(0.95);
     }
+
+    /* Dark mode toggle button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #006600;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      cursor: url('/assets/link.cur'), pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.1s;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      background: #006600;
+      transform: scale(0.95);
+    }
+
+    body.dark-mode .theme-toggle {
+      background: #006600;
+      color: #1a1a1a;
+    }
+
+    body.dark-mode .theme-toggle:hover {
+      background: #006600;
+    }
+
+    .error-container {
+      background: #e8e8e8;
+      border-radius: 15px;
+      padding: 40px;
+      margin: 50px auto;
+      max-width: 500px;
+      transition: background 0.3s ease;
+    }
+
+    .error-code {
+      font-size: 80px;
+      font-weight: bold;
+      color: #006600;
+      margin: 0;
+    }
+
+    .error-message {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+
+    .error-description {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    body.dark-mode .error-description {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
-  <h1>Err:404</h1>
-  <img src="/assets/nett-hier.png" alt="Nett hier. Aber das Bild fehlt!">
 
-  <a href="https://valooost.is-a.dev/" class="link-button">To the Homepage</a>
+  <!-- Dark mode toggle button -->
+  <button class="theme-toggle" onclick="toggleDarkMode()">🌙 Dark</button>
+
+  <div class="error-container">
+    <h1 class="error-code">404</h1>
+    <p class="error-message">Oops! Page Not Found</p>
+    <p class="error-description">The page you're looking for seems to have wandered off into the digital void. Maybe it's taking a coffee break?</p>
+    
+    <a href="/" class="link-button">Go Back Home</a>
+  </div>
+
+  <script>
+    // Dark mode functionality
+    function toggleDarkMode() {
+      const body = document.body;
+      const button = document.querySelector('.theme-toggle');
+      
+      body.classList.toggle('dark-mode');
+      
+      // Update button text and icon
+      if (body.classList.contains('dark-mode')) {
+        button.innerHTML = '☀️ Light';
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        button.innerHTML = '🌙 Dark';
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    }
+
+    // Load saved theme preference
+    function loadTheme() {
+      const darkMode = localStorage.getItem('darkMode');
+      const body = document.body;
+      const button = document.querySelector('.theme-toggle');
+      
+      if (darkMode === 'enabled') {
+        body.classList.add('dark-mode');
+        button.innerHTML = '☀️ Light';
+      }
+    }
+
+    // Load theme when page loads
+    document.addEventListener('DOMContentLoaded', loadTheme);
+  </script>
+
 </body>
 </html>
