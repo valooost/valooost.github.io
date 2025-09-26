@@ -29,6 +29,15 @@
       color: #006600 !important;
     }
 
+    body.dark-mode .info-section {
+      background: #2d2d2d !important;
+    }
+
+    body.dark-mode .info-section h3 {
+      color: white !important;
+    }
+
+
     body.dark-mode .error-container {
       background: #2d2d2d !important;
     }
@@ -124,7 +133,7 @@
   <!-- Dark mode toggle button -->
   <button class="theme-toggle" onclick="toggleDarkMode()">🌙 Dark</button>
 
-  <div class="error-container">
+  <div class="error-container" style="border-radius: 10px; max-width: calc(100% - 100px); margin: 30px auto; box-sizing: border-box;">
     <h1 class="error-code">404</h1>
     <p class="error-message">Oops! Page Not Found</p>
     <p class="error-description">The page you're looking for seems to have wandered off into the digital void. Maybe it's taking a coffee break?</p>
