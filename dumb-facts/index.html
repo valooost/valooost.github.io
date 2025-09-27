@@ -29,6 +29,14 @@
       color: #006600 !important;
     }
 
+    body.dark-mode .info-section {
+      background: #2d2d2d !important;
+    }
+
+    body.dark-mode .info-section h3 {
+      color: white !important;
+    }
+
     body.dark-mode .fact-container {
       background: #2d2d2d !important;
       border-color: #444 !important;
@@ -136,7 +144,7 @@
     <button class="new-fact-btn" onclick="getNewFact()">Get New Fact</button>
   </div>
 
-  <div class="info-section" style="background: #e8e8e8; border-radius: 10px; max-width: 300px; margin: 30px auto;">
+  <div class="info-section" style="background: #e8e8e8; border-radius: 10px; max-width: calc(100% - 100px); margin: 30px auto; box-sizing: border-box;">
     <p> <br> </p>
   <a href="https://valooost.is-a.dev/" class="link-button" target="_self">Go Back Home</a>
     <p><br></p>
