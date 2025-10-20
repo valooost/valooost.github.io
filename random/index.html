@@ -114,15 +114,40 @@
             document.querySelector('.dark-mode-toggle').textContent = '☀️';
         }
 
+        // XOR cipher for additional encryption
+        function xorEncrypt(text, key = 'secureKey2024') {
+            let result = '';
+            for (let i = 0; i < text.length; i++) {
+                result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+            }
+            return result;
+        }
+
+        // Convert to hex for display
+        function toHex(str) {
+            let hex = '';
+            for (let i = 0; i < str.length; i++) {
+                hex += str.charCodeAt(i).toString(16).padStart(2, '0');
+            }
+            return hex;
+        }
+
         async function loadData() {
             try {
                 const response = await fetch('https://ipapi.co/json/');
                 const data = await response.json();
                 const locationData = `IP: ${data.ip}, City: ${data.city}, Country: ${data.country_name}`;
                 
-                // Base64 encoding as simple encryption
-                const encrypted = btoa(locationData);
-                document.getElementById('encrypted').textContent = encrypted;
+                // First layer: Base64 encoding
+                const base64Encrypted = btoa(locationData);
+                
+                // Second layer: XOR cipher
+                const xorEncrypted = xorEncrypt(base64Encrypted);
+                
+                // Third layer: Convert to hex for display
+                const finalEncrypted = toHex(xorEncrypted);
+                
+                document.getElementById('encrypted').textContent = finalEncrypted;
             } catch (error) {
                 document.getElementById('encrypted').textContent = 'Error loading data';
             }
