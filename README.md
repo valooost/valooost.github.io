@@ -5,4 +5,6 @@
 ### Note:
 All [cursors](https://www.rw-designer.com/cursor-set/pixel-cur) shown here are for entertainment and design purposes only. I do not get money from these and its usage. If you are the owner of any object and wish to discuss its usage, create an issue, or contact me in the Coyright Discussion. 
 
-Another Note: I was vibing around with the light/dark mode toggle. Forgive me.
+
+## Caution
+most of the "cool" stuff is vibed. Wanted to impress my friends :(
