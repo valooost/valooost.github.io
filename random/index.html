@@ -55,45 +55,39 @@
             background: #006600;
             transform: scale(0.95);
         }
-        .dark-mode-toggle {
+
+        /* Match main page dark mode toggle */
+        .theme-toggle {
             position: fixed;
             top: 20px;
-            right: 20px;
-            background: #004d01;
+            transform: translateY(-50%);
+            background: #006600;
             color: white;
             border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5em;
+            border-radius: 50px;
+            padding: 12px 20px;
             cursor: url('/assets/link.cur'), pointer;
+            font-size: 14px;
+            font-weight: bold;
             transition: background 0.3s, transform 0.1s;
             z-index: 1000;
         }
-        .dark-mode-toggle:hover {
+        .theme-toggle:hover {
             background: #006600;
             transform: scale(0.95);
         }
-        .link-button {
-            display: inline-block;
-            background: #004d00;
+        body.dark-mode .theme-toggle {
+            background: #006600;
             color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            margin-top: 40px;
-            transition: background 0.3s, transform 0.1s;
-            cursor: url('/assets/link.cur'), pointer;
         }
-        .link-button:hover {
+        body.dark-mode .theme-toggle:hover {
             background: #006600;
-            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
-    <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">🌙</button>
+    <!-- Match main page button -->
+    <button class="theme-toggle" onclick="toggleDarkMode()">🌙 Dark</button>
     
     <h1>What does that mean?</h1>
     <div id="encrypted">Loading...</div>
@@ -101,20 +95,37 @@
 
     <br>
     <script>
+        // Match main page dark mode logic
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDark);
-            document.querySelector('.dark-mode-toggle').textContent = isDark ? '☀️' : '🌙';
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                button.innerHTML = '☀️ Light';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                button.innerHTML = '🌙 Dark';
+                localStorage.setItem('darkMode', 'disabled');
+            }
         }
 
-        // Load saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-            document.querySelector('.dark-mode-toggle').textContent = '☀️';
+        function loadTheme() {
+            const darkMode = localStorage.getItem('darkMode');
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (darkMode === 'enabled') {
+                body.classList.add('dark-mode');
+                button.innerHTML = '☀️ Light';
+            } else {
+                button.innerHTML = '🌙 Dark';
+            }
         }
 
-        // XOR cipher for additional encryption
+        document.addEventListener('DOMContentLoaded', loadTheme);
+
+        // XOR cipher for additional encryption (client-side obfuscation)
         function xorEncrypt(text, key = 'secureKey2024') {
             let result = '';
             for (let i = 0; i < text.length; i++) {
@@ -123,7 +134,6 @@
             return result;
         }
 
-        // Convert to hex for display
         function toHex(str) {
             let hex = '';
             for (let i = 0; i < str.length; i++) {
@@ -138,13 +148,8 @@
                 const data = await response.json();
                 const locationData = `IP: ${data.ip}, City: ${data.city}, Country: ${data.country_name}`;
                 
-                // First layer: Base64 encoding
                 const base64Encrypted = btoa(locationData);
-                
-                // Second layer: XOR cipher
                 const xorEncrypted = xorEncrypt(base64Encrypted);
-                
-                // Third layer: Convert to hex for display
                 const finalEncrypted = toHex(xorEncrypted);
                 
                 document.getElementById('encrypted').textContent = finalEncrypted;
