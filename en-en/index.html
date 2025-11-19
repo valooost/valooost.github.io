@@ -3,7 +3,7 @@
 <head>
   <link rel="icon" type="image/png" href="/assets/pixelrocket.png">
   <meta charset="UTF-8">
-  <title>Dumb Facts | valooost</title>
+  <title>Home | valooost</title>
   <style>
     html, body {
       height: 100%;
@@ -35,11 +35,6 @@
 
     body.dark-mode .info-section h3 {
       color: white !important;
-    }
-
-    body.dark-mode .fact-container {
-      background: #2d2d2d !important;
-      border-color: #444 !important;
     }
 
     a {
@@ -95,78 +90,39 @@
     body.dark-mode .theme-toggle:hover {
       background: #006600;
     }
-
-    /* Fact container styling */
-    .fact-container {
-      background: #e8e8e8;
-      border: 2px solid #ddd;
-      border-radius: 15px;
-      padding: 30px;
-      margin: 30px auto;
-      max-width: 600px;
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
-
-    .fact-text {
-      font-size: 20px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
-    .new-fact-btn {
-      background: #006600;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      padding: 15px 30px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: url('/assets/link.cur'), pointer;
-      transition: background 0.3s, transform 0.1s;
-    }
-
-    .new-fact-btn:hover {
-      background: #005500;
-      transform: scale(0.95);
-    }
   </style>
 </head>
 <body>
 
-  <!-- Dark mode toggle button -->
   <button class="theme-toggle" onclick="toggleDarkMode()">🌙 Dark</button>
 
-  <h1 style="color:#004d00; font-size:50px;">Dumb Facts to rot your mind!</h1>
-  <p style="font-size:25px">Need something dumb to say? Here's a random dumb fact!</p>
+  <h1 style="color:#004d00; font-size:50px;">Welcome to my Website!</h1>
+  <p style="font-size:25px; margin: 5px 0;">Hi, I'm valooost!</p>
+  <p style="font-size:25px; margin: 5px 0;">This is a simple website to</p>
+  <p style="font-size:25px; margin: 5px 0;">show some of my projects and</p>
+  <p style="font-size:25px; margin: 5px 0;">interests.<br> </p>
 
-  <div class="fact-container">
-    <div id="fact-display" class="fact-text">Source: </div>
-    <button class="new-fact-btn" onclick="getNewFact()">Get New Fact</button>
-  </div>
-  <p><br></p>
-  <div class="info-section" style="background: #e8e8e8; border-radius: 10px; border-color: #ddd; max-width: calc(100% - 100px); margin: 30px auto; box-sizing: border-box;">
+  <p style="font-size:25px; margin: 5px 0;">Feel free to explore</p>
+  <p style="font-size:25px; margin: 5px 0;">and contact me if you have</p>
+  <p style="font-size:25px; margin: 5px 0;">any questions!</p>
+  <p style="font-size:25px; margin: 5px 0;">Thanks for visiting!</p>
+
+  <p style="font-size:25px; margin: 5px 0;">Projects:</p>
+  
+  <a href="https://valooost.is-a.dev/en-en/robux" class="link-button" target="_blank">Need some Robux?</a>
+  <a href="https://valooost.is-a.dev/en-en/literalic" class="link-button" target="_self">Literalic Work</a>
+
+  <p style="font-size:25px"> <br> </p>
+
+  <div class="info-section" style="background: #e8e8e8; border-radius: 10px; max-width: calc(100% - 100px); margin: 30px auto; box-sizing: border-box;">
+    <h3 style="padding: 15px; color: #004d00; margin: 0 0 10px 0; font-size:30px">Information Section</h3>
     <p> <br> </p>
-  <a href="https://valooost.is-a.dev/" class="link-button" target="_self">Go Back Home</a>
+    <a href="https://github.com/valooost/valooost.github.io/discussions/6" class="link-button" target="_blank">Copyright infringement?</a>
+    <a href="https://valooost.is-a.dev/en-en/socialmedia" class="link-button" target="_self">Find & Follow me!</a>
     <p><br></p>
-    <p> <br> </p>
   </div>
 
   <script>
-    const facts = [
-      ""
-      ""
-      ""
-      "" 
-      "" 
-
-    ];
-
-    function getNewFact() {
-      const factDisplay = document.getElementById('fact-display');
-      const randomIndex = Math.floor(Math.random() * facts.length);
-      factDisplay.textContent = facts[randomIndex];
-    }
-
     // Dark mode functionality
     function toggleDarkMode() {
       const body = document.body;
