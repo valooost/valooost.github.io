@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WebXR AR – Minimal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body { margin: 0; overflow: hidden; font-family: sans-serif; }
+    #arButton {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 18px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+If you see this you may be good at programming stuff and similar. You may notice this site is vibed.
+
+
+<button id="arButton">Start AR</button>
+
+<script type="module">
+import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
+import { GLTFLoader } from "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
+
+let camera, scene, renderer;
+let controller;
+let model = null;
+
+init();
+
+function init() {
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera();
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.xr.enabled = true;
+  document.body.appendChild(renderer.domElement);
+
+  const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
+  scene.add(light);
+
+  const loader = new GLTFLoader();
+  loader.load("/assets/model.glb", gltf => {
+    model = gltf.scene;
+    model.visible = false;
+    scene.add(model);
+  });
+
+  document.getElementById("arButton").addEventListener("click", startAR);
+}
+
+function startAR() {
+  if (!navigator.xr) {
+    alert("WebXR nicht unterstützt");
+    return;
+  }
+
+  navigator.xr.requestSession("immersive-ar", {
+    requiredFeatures: ["hit-test"]
+  }).then(session => {
+    renderer.xr.setSession(session);
+    setupHitTest(session);
+    renderer.setAnimationLoop(render);
+  });
+}
+
+function setupHitTest(session) {
+  const viewerSpacePromise = session.requestReferenceSpace("viewer");
+  const localSpacePromise = session.requestReferenceSpace("local");
+
+  Promise.all([viewerSpacePromise, localSpacePromise]).then(spaces => {
+    const viewerSpace = spaces[0];
+    const localSpace = spaces[1];
+
+    session.requestHitTestSource({ space: viewerSpace }).then(source => {
+      controller = { source, localSpace };
+    });
+  });
+}
+
+function render(timestamp, frame) {
+  if (frame && controller && model) {
+    const hitTestResults = frame.getHitTestResults(controller.source);
+
+    if (hitTestResults.length > 0) {
+      const hit = hitTestResults[0];
+      const pose = hit.getPose(controller.localSpace);
+
+      model.visible = true;
+      model.position.set(
+        pose.transform.position.x,
+        pose.transform.position.y,
+        pose.transform.position.z
+      );
+    }
+  }
+
+  renderer.render(scene, camera);
+}
+</script>
+
+</body>
+</html>
