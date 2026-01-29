@@ -1,4 +1,4 @@
-<img width="2000" height="2000" alt="49889-9-construction-png-download-free" src="https://github.com/user-attachments/assets/2d9644af-decf-4ab6-a881-3e07369e6213" />
+<img width="200" height="200" alt="49889-9-construction-png-download-free" src="https://github.com/user-attachments/assets/2d9644af-decf-4ab6-a881-3e07369e6213" />
 
 
 
