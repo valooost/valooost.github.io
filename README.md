@@ -3,7 +3,7 @@
 
 
 
-# [enter my Website](https://www.valooost.is-a.deven)
+# [Enter my Website](https://www.valooost.is-a.deven)
 
 ### Note:
 All cursors, images et cetera shown here are for entertainment and design purposes only, see for my sources [sources](https://valooost.is-a.dev/assets). I do not earn money from these and its usage. If you are the owner of any object and wish to discuss its usage, create an issue, or contact me in the Coyright Discussion. 
