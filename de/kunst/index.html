@@ -1,0 +1,53 @@
+show swift_violet.tif in an responve website and cursor like in the other indici
+<!DOCTYPE html>
+<html lang="de">   
+<head>
+  <link rel="icon" type="image/png" href="/assets/pixelrocket.png">
+  <meta charset="UTF-8">
+  <title>Kunst | valooost</title>
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #f8f8f8;
+      color: #333;
+      margin: 0;
+      padding-top: 50px;
+      cursor: url('/assets/pixel.cur'), default;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      cursor: url('/assets/link.cur'), pointer;
+    }
+
+    .link-button {
+      display: block;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      border-radius: 10px;
+      padding: 15px 30px;
+      margin: 20px auto;
+      width: 220px;
+      background: #006600;
+      transition: background 0.3s, transform 0.1s;
+      cursor: url('/assets/link.cur'), pointer;
+    }
+
+    .link-button:hover {
+      background: #006600;
+      transform: scale(0.95);
+    }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 3em; margin-bottom: 20px;">Kunst</h1>
+    
+    <img src="/assets/swift_violet.tif" alt="Swift Violet" style="max-width: 90%; height: auto; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <p style="font-size: 1.2em; margin-top: 20px;">"Swift Violet", aus dem Videospiel "The Legend of Zelda: Breath of the Wild", digital nachgezeichnet</p>
+</body>
+</html>
