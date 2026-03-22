@@ -19,23 +19,7 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Dark mode styles */
-    body.dark-mode {
-      background: #1a1a1a;
-      color: #e0e0e0;
-    }
-
-    body.dark-mode h1 {
-      color: #006600 !important;
-    }
-
-    body.dark-mode .info-section {
-      background: #2d2d2d !important;
-    }
-
-    body.dark-mode .info-section h3 {
-      color: white !important;
-    }
+    
 
     a {
       cursor: url('/assets/link.cur'), pointer;
@@ -60,36 +44,6 @@
       transform: scale(0.95);
     }
 
-    /* Dark mode toggle button */
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #006600;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      padding: 12px 20px;
-      cursor: url('/assets/link.cur'), pointer;
-      font-size: 14px;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.1s;
-      z-index: 1000;
-    }
-
-    .theme-toggle:hover {
-      background: #006600;
-      transform: scale(0.95);
-    }
-
-    body.dark-mode .theme-toggle {
-      background: #006600;
-      color: white;
-    }
-
-    body.dark-mode .theme-toggle:hover {
-      background: #006600;
-    }
   </style>
 </head>
 <body>
@@ -119,7 +73,7 @@
     <p><br></p>
   </div>
 
-
+<!--->
   <script>
     // Dark mode functionality
     function toggleDarkMode() {
@@ -153,6 +107,6 @@
     // Load theme when page loads
     document.addEventListener('DOMContentLoaded', loadTheme);
   </script>
-
+-->
 </body>
 </html>
