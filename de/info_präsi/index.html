@@ -65,28 +65,20 @@
 			opacity: 0.82;
 		}
 
-		.hero {
+		.page-head {
 			max-width: 960px;
-			margin: 18px auto 26px;
+			margin: 18px auto 16px;
 			background: linear-gradient(120deg, var(--paper), #fdf3dc);
 			border: 2px solid var(--soft);
 			border-radius: 24px;
 			box-shadow: 0 16px 32px var(--shadow);
-			padding: 30px 28px;
+			padding: 24px 22px;
 			animation: rise 700ms ease-out;
 		}
 
-		.tag {
-			display: inline-block;
-			font-size: 0.84rem;
-			font-weight: 700;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			background: rgba(31, 111, 74, 0.14);
-			color: var(--accent-strong);
-			padding: 6px 10px;
-			border-radius: 100px;
-			margin-bottom: 12px;
+		.lead {
+			margin: 0;
+			font-size: 1.08rem;
 		}
 
 		h1,
@@ -110,9 +102,9 @@
 			font-size: 1.06rem;
 		}
 
-		.grid {
+		.detail-grid {
 			max-width: 960px;
-			margin: 0 auto;
+			margin: 0 auto 8px;
 			display: grid;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 18px;
@@ -150,6 +142,12 @@
 			padding: 18px 18px 14px;
 			box-shadow: 0 10px 22px rgba(31, 36, 29, 0.08);
 			animation: rise 650ms ease-out;
+		}
+
+		.card h3 {
+			margin: 0 0 8px;
+			font-size: 1.05rem;
+			color: var(--accent-strong);
 		}
 
 		.card:nth-child(2) {
@@ -261,12 +259,12 @@
 				padding: 0 14px 34px;
 			}
 
-			.hero {
+			.page-head {
 				padding: 22px 16px;
 				border-radius: 18px;
 			}
 
-			.grid {
+			.detail-grid {
 				grid-template-columns: 1fr;
 			}
 
@@ -288,51 +286,55 @@
 	</header>
 
 	<main>
-		<section class="hero" aria-labelledby="titel-praesentation">
-			<span class="tag">Kurzinfo fuer Besucher</span>
-			<h1 id="titel-praesentation">Informationen zur Praesentation</h1>
-			<p>
-				Diese Seite gibt dir einen schnellen Ueberblick zur Praesentation: Worum es geht,
-				wie die Inhalte eingeordnet werden koennen und wo du weiterfuehrende Quellen findest.
-			</p>
-			<p>
-				Ziel ist eine kompakte Orientierung, damit Besucherinnen und Besucher die wichtigsten
-				Begriffe sofort einordnen und bei Interesse direkt tiefer nachlesen koennen.
+		<section class="page-head" aria-labelledby="titel-praesentation">
+			<h1 id="titel-praesentation">Weitere Informationen zur Erdatmosphaere</h1>
+			<p class="lead">
+				Diese Seite ergaenzt die Praesentation mit kompaktem Hintergrundwissen zu
+				Zusammensetzung, Absorption und der Bedeutung einzelner Atmosphaerengase.
 			</p>
 		</section>
 
-		<section class="grid" aria-label="Inhalte zur Praesentation">
+		<section class="detail-grid" aria-label="Vertiefung zur Erdatmosphaere">
 			<article class="card">
-				<h2>Thema in einem Satz</h2>
-				<p>
-					Die Praesentation erklaert zentrale Zusammenhaenge, zeigt ein paar praktische
-					Beispiele und verweist auf verifizierbare Hintergrundinformationen.
-				</p>
-			</article>
-
-			<article class="card">
-				<h2>Was dich erwartet</h2>
+				<h2>Zusammensetzung der Luft</h2>
+				<p>Die trockene Erdatmosphaere besteht hauptsaechlich aus Stickstoff und Sauerstoff:</p>
 				<ul>
-					<li>Kurz erklaerte Grundbegriffe</li>
-					<li>Einordnung der wichtigsten Punkte</li>
-					<li>Links zum schnellen Weiterlesen</li>
-					<li>Quellenliste fuer nachvollziehbare Aussagen</li>
+					<li>N<sub>2</sub>: ca. 78 %</li>
+					<li>O<sub>2</sub>: ca. 21 %</li>
+					<li>Argon: ca. 0,9 %</li>
+					<li>Spurengase wie CO<sub>2</sub>, CH<sub>4</sub>, N<sub>2</sub>O und O<sub>3</sub> in kleinen Anteilen</li>
 				</ul>
 			</article>
 
 			<article class="card">
-				<h2>Weiterfuehrende Erklaerungen</h2>
+				<h2>Warum Spurengase entscheidend sind</h2>
+				<ul>
+					<li>Auch kleine Konzentrationen koennen starke Absorptionsbanden haben.</li>
+					<li>CO<sub>2</sub>, CH<sub>4</sub> und N<sub>2</sub>O beeinflussen die Waermebilanz der Erde.</li>
+					<li>H<sub>2</sub>O wirkt als wichtiges Rueckkopplungsgas im Klimasystem.</li>
+					<li>O<sub>3</sub> ist in der Stratosphaere essenziell fuer den UV-Schutz.</li>
+				</ul>
+			</article>
+
+			<article class="card">
+				<h2>Absorption und Spektren</h2>
 				<p>
-					Unterhalb findest du die vollstaendige Liste der in der Praesentation verwendeten Quellen,
-					inklusive Objektbezug, Foliennummer und Kennzeichnung (HC/AI).
+					Gase absorbieren elektromagnetische Strahlung nur in bestimmten Wellenlaengenbereichen.
+					Diese Muster sind wie Fingerabdruecke und erlauben in Spektren die Identifikation
+					von Atmosphaerenbestandteilen.
+				</p>
+				<p>
+					Genau dieses Prinzip wird bei Transitmessungen eingesetzt, um Atmosphaeren von
+					Exoplaneten zu untersuchen.
 				</p>
 			</article>
 
 			<article class="card">
-				<h2>Hinweis zur Nutzung</h2>
+				<h2>Ozon als Schutzschild</h2>
 				<p>
-					Externe Links oeffnen in einem neuen Tab. Bitte pruefe bei wissenschaftlicher
-					Verwendung immer die Originalquelle und das Datum der Veroeffentlichung.
+					Obwohl O<sub>3</sub> in sehr geringer Konzentration vorkommt, absorbiert es einen
+					grossen Teil der biologisch schaedlichen UV-Strahlung und schuetzt damit Leben
+					an der Erdoberflaeche.
 				</p>
 			</article>
 		</section>
