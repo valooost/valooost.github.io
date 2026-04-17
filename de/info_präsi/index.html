@@ -157,6 +157,62 @@
 			padding: 20px;
 		}
 
+		.source-table-wrap {
+			overflow-x: auto;
+			margin-top: 10px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			min-width: 720px;
+		}
+
+		th,
+		td {
+			text-align: left;
+			vertical-align: top;
+			padding: 10px 8px;
+			border-bottom: 1px solid rgba(31, 111, 74, 0.18);
+		}
+
+		th {
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: #355244;
+		}
+
+		td small {
+			display: block;
+			margin-top: 4px;
+			color: #4f5d54;
+		}
+
+		.badge {
+			display: inline-block;
+			padding: 3px 10px;
+			border-radius: 999px;
+			font-size: 0.82rem;
+			font-weight: 700;
+		}
+
+		.badge-hc {
+			background: #7ee0a1;
+			color: #123b22;
+		}
+
+		.badge-ai {
+			background: #d95d73;
+			color: #fff;
+		}
+
+		.legend {
+			margin-top: 12px;
+			font-size: 0.95rem;
+			color: #3f4639;
+		}
+
 		.footer-note {
 			max-width: 960px;
 			margin: 20px auto 0;
@@ -241,11 +297,10 @@
 
 			<article class="card">
 				<h2>Weiterfuehrende Erklaerungen</h2>
-				<ul>
-					<li><a href="https://de.wikipedia.org/wiki/Praesentation" target="_blank" rel="noopener noreferrer">Wikipedia: Praesentation</a></li>
-					<li><a href="https://de.wikipedia.org/wiki/Quelle_(Geschichtswissenschaft)" target="_blank" rel="noopener noreferrer">Wikipedia: Quelle und Quellenkritik</a></li>
-					<li><a href="https://de.wikipedia.org/wiki/Informationskompetenz" target="_blank" rel="noopener noreferrer">Wikipedia: Informationskompetenz</a></li>
-				</ul>
+				<p>
+					Unterhalb findest du die vollstaendige Liste der in der Praesentation verwendeten Quellen,
+					inklusive Objektbezug, Foliennummer und Kennzeichnung (HC/AI).
+				</p>
 			</article>
 
 			<article class="card">
@@ -258,12 +313,100 @@
 		</section>
 
 		<section class="sources" aria-labelledby="quellen">
-			<h2 id="quellen">Quellen</h2>
-			<ul>
-				<li><a href="https://de.wikipedia.org/wiki/Praesentation" target="_blank" rel="noopener noreferrer">https://de.wikipedia.org/wiki/Praesentation</a></li>
-				<li><a href="https://de.wikipedia.org/wiki/Informationskompetenz" target="_blank" rel="noopener noreferrer">https://de.wikipedia.org/wiki/Informationskompetenz</a></li>
-				<li><a href="https://de.wikipedia.org/wiki/Quelle_(Geschichtswissenschaft)" target="_blank" rel="noopener noreferrer">https://de.wikipedia.org/wiki/Quelle_(Geschichtswissenschaft)</a></li>
-			</ul>
+			<h2 id="quellen">Quellenueberblick aus der Praesentation</h2>
+			<div class="source-table-wrap">
+				<table aria-label="Verwendete Quellen nach Objekt">
+					<thead>
+						<tr>
+							<th>Objekt</th>
+							<th>Quelle</th>
+							<th>Folie</th>
+							<th>Label</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>N2-Grafik</td>
+							<td>
+								<a href="https://www.zhongtaicryo.com/en/bocupload/2025/08/04/17542708451528gkdjy.png" target="_blank" rel="noopener noreferrer">zhongtaicryo.com ... 17542708451528gkdjy.png</a>
+								<small>Cryogenic technology research &amp; developmen</small>
+							</td>
+							<td>2</td>
+							<td><span class="badge badge-hc">HC</span></td>
+						</tr>
+						<tr>
+							<td>O2-Grafik</td>
+							<td>
+								<a href="https://www.zhongtaicryo.com/en/bocupload/2025/08/04/17542708276926t3ez6.png" target="_blank" rel="noopener noreferrer">zhongtaicryo.com ... 17542708276926t3ez6.png</a>
+								<small>Cryogenic technology research &amp; developmen</small>
+							</td>
+							<td>2</td>
+							<td><span class="badge badge-hc">HC</span></td>
+						</tr>
+						<tr>
+							<td>CH4-Grafik</td>
+							<td>
+								<a href="https://www.zhongtaicryo.com/en/bocupload/2025/08/04/17542708627642u1tfr.png" target="_blank" rel="noopener noreferrer">zhongtaicryo.com ... 17542708627642u1tfr.png</a>
+								<small>Cryogenic technology research &amp; developmen</small>
+							</td>
+							<td>2</td>
+							<td><span class="badge badge-hc">HC</span></td>
+						</tr>
+						<tr>
+							<td>Ar-Grafik</td>
+							<td>
+								<a href="https://www.zhongtaicryo.com/en/bocupload/2025/08/14/17551405784025zsdgj.png" target="_blank" rel="noopener noreferrer">zhongtaicryo.com ... 17551405784025zsdgj.png</a>
+								<small>Cryogenic technology research &amp; developmen</small>
+							</td>
+							<td>2</td>
+							<td><span class="badge badge-hc">HC</span></td>
+						</tr>
+						<tr>
+							<td>H2O-Grafik</td>
+							<td>KI-generiert: DALL-E 3 (OpenAI)<small>auf Basis von den vorherigen Bildern</small></td>
+							<td>2</td>
+							<td><span class="badge badge-ai">AI</span></td>
+						</tr>
+						<tr>
+							<td>CO2-Grafik</td>
+							<td>KI-generiert: DALL-E 3 (OpenAI)<small>auf Basis von den vorherigen Bildern</small></td>
+							<td>2</td>
+							<td><span class="badge badge-ai">AI</span></td>
+						</tr>
+						<tr>
+							<td>N2O-Grafik</td>
+							<td>KI-generiert: DALL-E 3 (OpenAI)<small>auf Basis von den vorherigen Bildern</small></td>
+							<td>2</td>
+							<td><span class="badge badge-ai">AI</span></td>
+						</tr>
+						<tr>
+							<td>O3-Grafik</td>
+							<td>KI-generiert: DALL-E 3 (OpenAI)<small>auf Basis von den vorherigen Bildern</small></td>
+							<td>2, 4</td>
+							<td><span class="badge badge-ai">AI</span></td>
+						</tr>
+						<tr>
+							<td>Spektrum</td>
+							<td>
+								Physik-Buch, Seite 78
+								<small>cc-buchner: Physik 9 Gymnasium Bayern, 1. Auflage, 2. Druck (2025)</small>
+							</td>
+							<td>3</td>
+							<td><span class="badge badge-hc">HC</span></td>
+						</tr>
+						<tr>
+							<td>Comic</td>
+							<td>
+								<a href="https://imgs.xkcd.com/comics/spectroscopy.png" target="_blank" rel="noopener noreferrer">imgs.xkcd.com/comics/spectroscopy.png</a>
+								<small><a href="https://xkcd.com/1517/" target="_blank" rel="noopener noreferrer">https://xkcd.com/1517/</a></small>
+							</td>
+							<td>4</td>
+							<td><span class="badge badge-hc">HC</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p class="legend"><strong>Label-Legende:</strong> HC = direkt uebernommene/klassische Quelle, AI = KI-generiert.</p>
 		</section>
 
 		<p class="footer-note">
