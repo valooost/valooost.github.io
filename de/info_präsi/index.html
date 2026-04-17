@@ -118,6 +118,31 @@
 			gap: 18px;
 		}
 
+		.timeline {
+			max-width: 960px;
+			margin: 18px auto 0;
+			display: grid;
+			gap: 12px;
+		}
+
+		.step {
+			background: rgba(255, 251, 243, 0.92);
+			border: 2px solid rgba(31, 111, 74, 0.2);
+			border-radius: 14px;
+			padding: 14px 16px;
+		}
+
+		.step h3 {
+			margin: 0 0 6px;
+			font-size: 1.08rem;
+			color: var(--accent-strong);
+		}
+
+		.step p {
+			margin: 0;
+			font-size: 1rem;
+		}
+
 		.card {
 			background: rgba(255, 250, 238, 0.9);
 			border: 2px solid rgba(31, 111, 74, 0.24);
@@ -312,6 +337,38 @@
 			</article>
 		</section>
 
+		<section class="timeline" aria-labelledby="ablauf">
+			<h2 id="ablauf">Ablauf der Praesentation</h2>
+			<article class="step">
+				<h3>Folie 1: Bestandteile der Atmosphaere</h3>
+				<p>
+					Einstieg mit den haeufigsten Gasen (N<sub>2</sub>, O<sub>2</sub>, Ar) sowie Spurengasen
+					wie H<sub>2</sub>O, CO<sub>2</sub>, N<sub>2</sub>O, CH<sub>4</sub> und O<sub>3</sub>.
+				</p>
+			</article>
+			<article class="step">
+				<h3>Folie 2: Absorptionsspektrum</h3>
+				<p>
+					Darstellung, welche Gase in welchen Bereichen (IR, sichtbar, UV) Energie absorbieren
+					und warum sich daraus typische spektrale Signaturen ergeben.
+				</p>
+			</article>
+			<article class="step">
+				<h3>Folie 3: Ozon als Schutzschild</h3>
+				<p>
+					Fokus auf Ozon (O<sub>3</sub>) als kleiner, aber zentraler Atmosphaerenbestandteil,
+					der UV-Strahlung absorbiert und biologisch relevante Schutzwirkung entfaltet.
+				</p>
+			</article>
+			<article class="step">
+				<h3>Folie 4: Planeten-Spektroskopie</h3>
+				<p>
+					Uebertragung auf Exoplaneten: Mit Transitmethode und Spektrallinien kann aus
+					Helligkeitsaenderungen auf atmosphaerische Bestandteile geschlossen werden.
+				</p>
+			</article>
+		</section>
+
 		<section class="sources" aria-labelledby="quellen">
 			<h2 id="quellen">Quellenueberblick aus der Praesentation</h2>
 			<div class="source-table-wrap">
@@ -326,28 +383,28 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>N2-Grafik</td>
+							<td>N<sub>2</sub>-Grafik</td>
 							<td>
 								<a href="https://www.zhongtaicryo.com/en/bocupload/2025/08/04/17542708451528gkdjy.png" target="_blank" rel="noopener noreferrer">zhongtaicryo.com ... 17542708451528gkdjy.png</a>
-								<small>Cryogenic technology research &amp; developmen</small>
+								<small>Cryogenic technology research &amp; development</small>
 							</td>
 							<td>2</td>
 							<td><span class="badge badge-hc">HC</span></td>
 						</tr>
 						<tr>
-							<td>O2-Grafik</td>
+							<td>O<sub>2</sub>-Grafik</td>
 							<td>
 								<a href="https://www.zhongtaicryo.com/en/bocupload/2025/08/04/17542708276926t3ez6.png" target="_blank" rel="noopener noreferrer">zhongtaicryo.com ... 17542708276926t3ez6.png</a>
-								<small>Cryogenic technology research &amp; developmen</small>
+								<small>Cryogenic technology research &amp; development</small>
 							</td>
 							<td>2</td>
 							<td><span class="badge badge-hc">HC</span></td>
 						</tr>
 						<tr>
-							<td>CH4-Grafik</td>
+							<td>CH<sub>4</sub>-Grafik</td>
 							<td>
 								<a href="https://www.zhongtaicryo.com/en/bocupload/2025/08/04/17542708627642u1tfr.png" target="_blank" rel="noopener noreferrer">zhongtaicryo.com ... 17542708627642u1tfr.png</a>
-								<small>Cryogenic technology research &amp; developmen</small>
+								<small>Cryogenic technology research &amp; development</small>
 							</td>
 							<td>2</td>
 							<td><span class="badge badge-hc">HC</span></td>
@@ -356,31 +413,31 @@
 							<td>Ar-Grafik</td>
 							<td>
 								<a href="https://www.zhongtaicryo.com/en/bocupload/2025/08/14/17551405784025zsdgj.png" target="_blank" rel="noopener noreferrer">zhongtaicryo.com ... 17551405784025zsdgj.png</a>
-								<small>Cryogenic technology research &amp; developmen</small>
+								<small>Cryogenic technology research &amp; development</small>
 							</td>
 							<td>2</td>
 							<td><span class="badge badge-hc">HC</span></td>
 						</tr>
 						<tr>
-							<td>H2O-Grafik</td>
+							<td>H<sub>2</sub>O-Grafik</td>
 							<td>KI-generiert: DALL-E 3 (OpenAI)<small>auf Basis von den vorherigen Bildern</small></td>
 							<td>2</td>
 							<td><span class="badge badge-ai">AI</span></td>
 						</tr>
 						<tr>
-							<td>CO2-Grafik</td>
+							<td>CO<sub>2</sub>-Grafik</td>
 							<td>KI-generiert: DALL-E 3 (OpenAI)<small>auf Basis von den vorherigen Bildern</small></td>
 							<td>2</td>
 							<td><span class="badge badge-ai">AI</span></td>
 						</tr>
 						<tr>
-							<td>N2O-Grafik</td>
+							<td>N<sub>2</sub>O-Grafik</td>
 							<td>KI-generiert: DALL-E 3 (OpenAI)<small>auf Basis von den vorherigen Bildern</small></td>
 							<td>2</td>
 							<td><span class="badge badge-ai">AI</span></td>
 						</tr>
 						<tr>
-							<td>O3-Grafik</td>
+							<td>O<sub>3</sub>-Grafik</td>
 							<td>KI-generiert: DALL-E 3 (OpenAI)<small>auf Basis von den vorherigen Bildern</small></td>
 							<td>2, 4</td>
 							<td><span class="badge badge-ai">AI</span></td>
