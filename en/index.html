@@ -124,39 +124,6 @@
     </a>
     <p><br></p>
 
-  <script>
-    // Dark mode functionality
-    function toggleDarkMode() {
-      const body = document.body;
-      const button = document.querySelector('.theme-toggle');
-      
-      body.classList.toggle('dark-mode');
-      
-      // Update button text and icon
-      if (body.classList.contains('dark-mode')) {
-        button.innerHTML = '☀️ Light';
-        localStorage.setItem('darkMode', 'enabled');
-      } else {
-        button.innerHTML = '🌙 Dark';
-        localStorage.setItem('darkMode', 'disabled');
-      }
-    }
-
-    // Load saved theme preference
-    function loadTheme() {
-      const darkMode = localStorage.getItem('darkMode');
-      const body = document.body;
-      const button = document.querySelector('.theme-toggle');
-      
-      if (darkMode === 'enabled') {
-        body.classList.add('dark-mode');
-        button.innerHTML = '☀️ Light';
-      }
-    }
-
-    // Load theme when page loads
-    document.addEventListener('DOMContentLoaded', loadTheme);
-  </script>
 
 </body>
 </html>
